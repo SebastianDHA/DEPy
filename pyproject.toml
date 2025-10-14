@@ -3,8 +3,8 @@ requires = ["setuptools >= 77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "DEPy"
-version = "0.1.0"
+name = "summarizedpy"
+version = "0.1.0.post1"
 description = "A differential expression analysis package for proteomics data, which leverages transcriptomics tools."
 readme = "README.md"
 authors = [

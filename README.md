@@ -6,13 +6,13 @@ A differential expression analysis package for bulk proteomics (and metabolomics
 Bringing the power of R packages like DEP to Python.
 All you need is a matrix of features and their intensity values.
 
-* PyPI package: https://pypi.org/project/DEPy/
+* PyPI package: https://pypi.org/project/summarizedpy/
 * GitHub: [SebastianDHA/DEPy](https://github.com/SebastianDHA/DEPy)
 * Free software: MIT License
 
 ## Features
 
-* A container for your -omics data, much like SummarizedExperiment or DEP in R.
+* SummarizedPY: A container for your -omics data, much like SummarizedExperiment or DEP in R.
 * Filtering and subsetting your samples and features
 * Missing value filtering
 * Imputation using ImputeLCMD (many methods)
