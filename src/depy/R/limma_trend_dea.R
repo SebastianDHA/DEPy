@@ -8,7 +8,7 @@ packages <- c("limma", "dplyr", "purrr", "stringr", "tibble", "tidyr", "arrow", 
 
 # Load packages quietly
 print(paste0(Sys.time(), ": ", "Loading required R packages..."))
-invisible(lapply(packages, FUN = function(pkg) 
+invisible(lapply(packages, FUN = function(pkg)
 {suppressWarnings(suppressMessages(library(pkg, character.only = TRUE, quietly = T)))}
 ))
 
@@ -48,55 +48,74 @@ stopifnot(ncol(feature_matrix) == nrow(samples))
 
 # Read in features metadata from temp feather file
 if (!is.null(opt$feature_id_col)) {
-  
+
   print(paste0(Sys.time(), ": ", "Reading feature metadata..."))
   features <- read_feather(file = opt$features)
   stopifnot(nrow(feature_matrix) == nrow(features))
   rownames(feature_matrix) <- features %>% pull(opt$feature_id_col)
-  
+
 }
 
 # Create limma model.matrix & tidy column names to match contrast definition
-# The term.labels attribute is used as a regex to remove automatically appended strings in the column names
+# Check design_formula
+print(paste0(Sys.time(), ": ", "Checking design formula..."))
+design_formula <- opt$design_formula
+design_formula <- str_remove_all(design_formula, " ")
+design_formula <- ifelse(str_detect(design_formula, "~"), design_formula, paste0("~", design_formula))
+design_formula <- ifelse(str_detect(design_formula, "~0+"), design_formula, str_replace(design_formula, "~", "~0+"))
+design_formula <- as.formula(design_formula)
+
+# Create model matrix
 print(paste0(Sys.time(), ": ", "Creating design matrix..."))
-design_formula <- as.formula(opt$design_formula)
 design <- model.matrix(design_formula, data=samples)
-colnames(design) <- str_remove_all(colnames(design), paste0(attr(terms(design_formula), "term.labels"), collapse = "|"))
+
+# Clean model matrix column names
+# The term.labels attribute is used as a regex to remove automatically appended strings in the column names
+# If full match, retain, else remove pattern (avoids accidental blank column names)
+term_str <- paste0(attr(terms(design_formula), "term.labels"), collapse = "|")
+mask <- str_extract(colnames(design), term_str) == colnames(design)
+new_names <- map2(.x=colnames(design), .y=mask, .f = function(.x, .y){
+
+  if (.y) {.x}
+  else {str_remove(.x, term_str)}
+
+}) %>% unlist()
+colnames(design) <- new_names
 
 # Parse contrasts string into named vector for limma's makeContrasts
 # Formatting uses '@' to separate contrasts and ':' to separate contrast name (key) and definition (value)
 print(paste0(Sys.time(), ": ", "Parsing contrasts..."))
 contrasts <- opt$contrasts
-contrasts <- unlist(str_split(contrasts, "@")) 
+contrasts <- unlist(str_split(contrasts, "@"))
 names(contrasts) <- unlist(str_split_i(contrasts, ":", i=1))
 contrasts <- map(contrasts, ~str_extract(.x, "(?<=:)(.+)"))
 contrasts <- unlist(contrasts)
 contr.matrix <- makeContrasts(contrasts = contrasts, levels = design)
 colnames(contr.matrix) <- names(contrasts)
 
-# limma trend function 
+# limma trend function
 print(paste0(Sys.time(), ": ", "Initializing limma-trend..."))
-limma_trend_dea <- function(mat=NULL, des=NULL, c_mat=NULL, 
-                            robust=NULL, 
-                            arr_weights=NULL, 
-                            block=NULL, 
-                            prior.n=NULL, 
-                            var.group=NULL, 
+limma_trend_dea <- function(mat=NULL, des=NULL, c_mat=NULL,
+                            robust=NULL,
+                            arr_weights=NULL,
+                            block=NULL,
+                            prior.n=NULL,
+                            var.group=NULL,
                             sample_id_col=NULL){
-  
+
   correlation <- NULL
   weights <- NULL
-  
+
   if (arr_weights) {
-    
+
     if (is.null(prior.n)) {prior.n=10}
     if (!is.null(var.group)) {var.group <- samples %>% pull(var.group)}
     print(paste0(Sys.time(), ": ", "Calculating array weights..."))
     weights <- arrayWeights(mat, design=des, method="reml", prior.n=prior.n, var.group=var.group)
-    
+
     names(weights) <- colnames(feature_matrix)
     if (!is.null(sample_id_col)) {names(weights) <- samples %>% pull(sample_id_col)}
-    
+
     print("---Sample weights----")
     print(weights)
   }
@@ -107,26 +126,26 @@ limma_trend_dea <- function(mat=NULL, des=NULL, c_mat=NULL,
     correlation <- corfit$consensus.correlation
     print(paste0("Consensus correlation: ", correlation))
   }
-  
+
   print(paste0(Sys.time(), ": ", "Fitting model..."))
-  vfit <- lmFit(mat, 
-                design=des, 
-                block=block, 
+  vfit <- lmFit(mat,
+                design=des,
+                block=block,
                 correlation=correlation,
                 weights=weights)
-  
+
   print(paste0(Sys.time(), ": ", "Fitting contrasts..."))
   vfit <- contrasts.fit(vfit, c_mat)
-  
+
   print(paste0(Sys.time(), ": ", "Fitting eBayes trend..."))
   efit <- eBayes(vfit, trend = T, robust=robust)
-  
+
   return(efit)
 }
-efit <- limma_trend_dea(mat=feature_matrix, 
-                        des=design, 
-                        c_mat=contr.matrix, 
-                        robust=opt$robust, 
+efit <- limma_trend_dea(mat=feature_matrix,
+                        des=design,
+                        c_mat=contr.matrix,
+                        robust=opt$robust,
                         block=opt$block,
                         arr_weights=opt$array_weights,
                         prior.n=opt$prior_n,
@@ -136,14 +155,14 @@ efit <- limma_trend_dea(mat=feature_matrix,
 # Extract DEA results into nested tibble
 print(paste0(Sys.time(), ": ", "Extracting DEA results..."))
 dea_results <- tibble(contrast_label = colnames(efit$contrasts),
-                      results = map(contrast_label, 
-                                    function(.x) 
+                      results = map(contrast_label,
+                                    function(.x)
                                       rownames_to_column(
-                                        topTable(efit, 
-                                                 coef = .x, 
-                                                 number = Inf, 
-                                                 sort.by = "p", 
-                                                 confint = T), 
+                                        topTable(efit,
+                                                 coef = .x,
+                                                 number = Inf,
+                                                 sort.by = "p",
+                                                 confint = T),
                                         var = "feature"))) %>%
   unnest(results)
 
