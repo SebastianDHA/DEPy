@@ -14,7 +14,7 @@ maintainers = [
   {name = "Sebastian Dohm-Hansen", email = "heinrich.sebastian.dohmhansen@gmail.com"}
 ]
 
-license = {text = "MIT"}
+license = "MIT"
 requires-python = ">= 3.9"
 
 dependencies = [
@@ -31,7 +31,25 @@ dependencies = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-"depy" = ["/R/*.R"]
+"depy" = ["R/*.R"]
+
+[tool.setuptools]
+include-package-data = true
 
 [project.optional-dependencies]
 dev = ["jupyter", "pytest"]
+
+[tool.bumpversion]
+current_version = "0.1.0.post1"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "src/depy/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
