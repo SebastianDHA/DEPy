@@ -765,6 +765,7 @@ class SummarizedPy:
         design_formula : str
             A formula describing the linear model. Covariates must be present in samples attribute.
             Must begin with a tilde (~) and add covariates with '+'.
+            Note: formula may not contain intercept term
         contrasts : dict
             A dictionary containing contrast labels (keys) and contrast definitions (values).
             Contrasts are defined by adding or subtracting levels of the covariates
