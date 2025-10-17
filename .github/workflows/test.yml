@@ -26,8 +26,15 @@ jobs:
           activate-environment: depy
           use-mamba: true
 
-      - name: Ensure CONDA_PREFIX exported
-        run: echo "CONDA_PREFIX=$CONDA_PREFIX" >> $GITHUB_ENV
+      - name: Verify environment
+        shell: bash -l {0}
+        run: |
+            source $CONDA/etc/profile.d/conda.sh
+            conda activate depy
+            echo "CONDA_PREFIX=$CONDA_PREFIX"
+            which python
+            which Rscript || echo "Rscript not found!"
+            Rscript --version || true
 
       # Step 3: Install the package in editable mode
       - name: Install DEPy (editable)
