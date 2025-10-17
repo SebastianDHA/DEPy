@@ -1,81 +1,48 @@
-# Justfile for DEPy
+# justfile for DEPy
 
-# Show available commands
-list:
-    @just --list
+# -------------------------------------------------
+#  1⃣ Create conda environment from file
+# -------------------------------------------------
+env:
+    # Creates the conda environment from environment.yml
+    conda env create -f environment.yml -n depy
 
-# Run all the formatting, linting, and testing commands
-qa:
-    uv run --python=3.13 --extra test ruff format .
-    uv run --python=3.13 --extra test ruff check . --fix
-    uv run --python=3.13 --extra test ruff check --select I --fix .
-    uv run --python=3.13 --extra test ty check .
-    uv run --python=3.13 --extra test pytest .
+# -------------------------------------------------
+#  2⃣ Install editable package
+# -------------------------------------------------
+install:
+    pip install -e .
 
-# Run all the tests for all the supported Python versions
-testall:
-    uv run --python=3.10 --extra test pytest
-    uv run --python=3.11 --extra test pytest
-    uv run --python=3.12 --extra test pytest
-    uv run --python=3.13 --extra test pytest
+# -------------------------------------------------
+#  3⃣ Run tests on editable install
+# -------------------------------------------------
+tests:
+    pytest -v
 
-# Run all the tests, but allow for arguments to be passed
-test *ARGS:
-    @echo "Running with arg: {{ARGS}}"
-    uv run --python=3.13 --extra test pytest {{ARGS}}
+# -------------------------------------------------
+#  4⃣ Build wheel and test it
+# -------------------------------------------------
+wheel:
+    pip install build toml
+    VERSION=$(python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])")
+    python -m build
+    pip install dist/summarizedpy-${VERSION}-py3-none-any.whl
+    pytest -v
 
-# Run all the tests, but on failure, drop into the debugger
-pdb *ARGS:
-    @echo "Running with arg: {{ARGS}}"
-    uv run --python=3.13  --extra test pytest --pdb --maxfail=10 --pdbcls=IPython.terminal.debugger:TerminalPdb {{ARGS}}
+# -------------------------------------------------
+#  5⃣ Build MkDocs site
+# -------------------------------------------------
+docs:
+    mkdocs build
 
-# Run coverage, and build to HTML
-coverage:
-    uv run --python=3.13 --extra test coverage run -m pytest .
-    uv run --python=3.13 --extra test coverage report -m
-    uv run --python=3.13 --extra test coverage html
+# -------------------------------------------------
+#  6⃣ Deploy docs to GitHub Pages
+# -------------------------------------------------
+deploy:
+    mkdocs gh-deploy --clean
 
-# Build the project, useful for checking that packaging is correct
-build:
-    rm -rf build
+# -------------------------------------------------
+#  7⃣ Clean dist
+# -------------------------------------------------
+clean:
     rm -rf dist
-    uv build
-
-VERSION := `grep -m1 '^version' pyproject.toml | sed -E 's/version = "(.*)"/\1/'`
-
-# Print the current version of the project
-version:
-    @echo "Current version is {{VERSION}}"
-
-# Tag the current version in git and put to github
-tag:
-    echo "Tagging version v{{VERSION}}"
-    git tag -a v{{VERSION}} -m "Creating version v{{VERSION}}"
-    git push origin v{{VERSION}}
-
-# remove all build, test, coverage and Python artifacts
-clean: 
-	clean-build
-	clean-pyc
-	clean-test
-
-# remove build artifacts
-clean-build:
-	rm -fr build/
-	rm -fr dist/
-	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
-
-# remove Python file artifacts
-clean-pyc:
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
-
-# remove test and coverage artifacts
-clean-test:
-	rm -f .coverage
-	rm -fr htmlcov/
-	rm -fr .pytest_cache
