@@ -26,6 +26,9 @@ jobs:
           activate-environment: depy
           use-mamba: true
 
+      - name: Ensure CONDA_PREFIX exported
+        run: echo "CONDA_PREFIX=$CONDA_PREFIX" >> $GITHUB_ENV
+
       # Step 3: Install the package in editable mode
       - name: Install DEPy (editable)
         run: |
