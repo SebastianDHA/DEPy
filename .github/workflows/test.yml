@@ -19,8 +19,8 @@ jobs:
       - name: Setup Conda
         uses: conda-incubator/setup-miniconda@v2
         with:
-          auto-update-conda: true
-          python-version: 3.9         # match environment.yml
+          auto-update-conda: false
+          python-version: 3.9
           environment-file: environment.yml
           activate-environment: depy
           use-mamba: true
@@ -28,19 +28,16 @@ jobs:
       # Step 3: Install the package in editable mode
       - name: Install DEPy (editable)
         run: |
-          conda activate depy
           pip install -e .
 
       # Step 4: Run tests on editable install
       - name: Run tests (editable install)
         run: |
-          conda activate depy
           pytest -v
 
       # Step 5: Build wheel and test it
       - name: Test built wheel
         run: |
-          conda activate depy
           pip install build toml
 
           # Parse version from pyproject.toml
@@ -56,7 +53,6 @@ jobs:
       # Step 6: Build MkDocs site
       - name: Build MkDocs
         run: |
-          conda activate depy
           mkdocs build
 
       # Step 7: Deploy to GitHub Pages
