@@ -73,6 +73,7 @@ jobs:
         run: |
           source $CONDA/etc/profile.d/conda.sh
           conda activate depy
+          python -m pip install -r requirements-docs.txt
           mkdocs build
 
       # Step 7: Deploy to GitHub Pages
