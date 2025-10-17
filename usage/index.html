@@ -1,0 +1,1284 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Python–R hybrid package for differential expression analysis.">
+      
+      
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Usage - DEPy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="DEPy" class="md-header__button md-logo" aria-label="DEPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DEPy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SebastianDHA/DEPy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SebastianDHA/DEPy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Usage
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../HISTORY/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DEPy" class="md-nav__button md-logo" aria-label="DEPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DEPy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SebastianDHA/DEPy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SebastianDHA/DEPy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading the data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploring-the-summarizedpy-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring the SummarizedPy object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsetting-and-slicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subsetting and slicing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subsetting and slicing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-note-on-dimensionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      A note on dimensionality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-by-sample-and-feature-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering by sample and feature metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missingness-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missingness filtering
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imputation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surrogate-variable-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Surrogate variable analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Surrogate variable analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-use-sva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why use sva
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-is-why-sva" class="md-nav__link">
+    <span class="md-ellipsis">
+      This is why sva
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limma-trend" class="md-nav__link">
+    <span class="md-ellipsis">
+      limma-trend
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="limma-trend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-brief-note-on-design-formulae" class="md-nav__link">
+    <span class="md-ellipsis">
+      A brief note on design formulae
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volcano-plots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volcano plots
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HISTORY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading the data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploring-the-summarizedpy-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring the SummarizedPy object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsetting-and-slicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subsetting and slicing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subsetting and slicing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-note-on-dimensionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      A note on dimensionality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-by-sample-and-feature-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering by sample and feature metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missingness-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missingness filtering
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Imputation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surrogate-variable-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Surrogate variable analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Surrogate variable analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-use-sva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why use sva
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-is-why-sva" class="md-nav__link">
+    <span class="md-ellipsis">
+      This is why sva
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limma-trend" class="md-nav__link">
+    <span class="md-ellipsis">
+      limma-trend
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="limma-trend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-brief-note-on-design-formulae" class="md-nav__link">
+    <span class="md-ellipsis">
+      A brief note on design formulae
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volcano-plots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volcano plots
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h1>
+<h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p>To use DEPy in a project, start the 'depy' conda environment:</p>
+<p><div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>depy
+</code></pre></div>
+Then, open a script or a Jupyter Notebook and simply:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">depy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dp</span>
+</code></pre></div></p>
+<h2 id="example-workflow">Example workflow<a class="headerlink" href="#example-workflow" title="Permanent link">&para;</a></h2>
+<h3 id="loading-the-data">Loading the data<a class="headerlink" href="#loading-the-data" title="Permanent link">&para;</a></h3>
+<p>Let's load the example dataset that comes with DEPy (courtesy of the ImputeLCMD package).
+This is a real-world proteomics <a href="https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD000438">dataset</a>
+of human cancer cell lines (3,709 features, 12 samples).
+Data were processed with MaxQaunt and comes in the form of protein groups and their intensities.
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">depy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dp</span>
+
+<span class="n">sp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">SummarizedPy</span><span class="p">()</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">load_example_data</span><span class="p">()</span>
+</code></pre></div></p>
+<h3 id="exploring-the-summarizedpy-object">Exploring the SummarizedPy object<a class="headerlink" href="#exploring-the-summarizedpy-object" title="Permanent link">&para;</a></h3>
+<p>Data are stored in three main attributes:
+- data (numpy ndarray with float or int dtype)
+- features (pandas DataFrame)
+- samples (pandas DataFrame)</p>
+<p>These can be readily accessed
+<div class="highlight"><pre><span></span><code><span class="c1"># Check expression data</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Check feature metadata</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">features</span>
+
+<span class="c1"># Check sample metadata</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">samples</span>
+</code></pre></div>
+To check current dimensions, we can simply invoke the object or call <code>print()</code> on it
+<div class="highlight"><pre><span></span><code><span class="c1"># See current dimensions in &#39;repr&#39; format</span>
+<span class="n">sp</span>
+
+<span class="c1"># Get a user-friendly summary of the entire object</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</code></pre></div>
+The last statement will reveal another useful attribute, the <code>history</code> attribute.
+<div class="highlight"><pre><span></span><code><span class="c1"># Check history attribute</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+This attribute keeps a faithful record of <em>everything</em> you do to the <code>SummarizedPy</code> object, including function calls and parameters.
+This is incredibly handy for reproducibility.</p>
+<h2 id="subsetting-and-slicing">Subsetting and slicing<a class="headerlink" href="#subsetting-and-slicing" title="Permanent link">&para;</a></h2>
+<p><code>SummarizedPy</code> objects can be subset and sliced just like SummarizedExperiment in R.
+The objects are indexed as <code>sp[features, samples]</code>
+Thus, we can:</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Get first feature and all samples</span>
+<span class="n">sp</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># Or equivalently</span>
+<span class="n">sp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Get first sample and all features</span>
+<span class="n">sp</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+Note that if you subset your <code>SummarizedPy</code>, it will be reflected in the <code>history</code> attribute:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Subset first feature and all samples</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h3 id="a-note-on-dimensionality">A note on dimensionality<a class="headerlink" href="#a-note-on-dimensionality" title="Permanent link">&para;</a></h3>
+<p><code>SummarizedPy</code> enforces a 2D constraint on all three main attributes <code>data features samples</code>
+such that you always get a 2D <code>numpy</code> array when calling <code>sp.data</code> and a full <code>pandas</code>
+DataFrame when calling <code>sp.features</code> or <code>sp.samples</code></p>
+<p><strong>Critically</strong>, <code>SummarizedPy</code> enforces the following rules:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">sp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">sp</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">sp</span><span class="o">.</span><span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+Indeed, if you were to try
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;feature_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;feature1&quot;</span><span class="p">,</span> <span class="s2">&quot;feature2&quot;</span><span class="p">,</span> <span class="s2">&quot;feature3&quot;</span><span class="p">]})</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;sample_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sample1&quot;</span><span class="p">,</span> <span class="s2">&quot;sample2&quot;</span><span class="p">]})</span>
+
+<span class="n">sp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">SummarizedPy</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+                <span class="n">samples</span><span class="o">=</span><span class="n">samples</span><span class="p">)</span>
+</code></pre></div>
+You would get a <code>ValueError</code> saying <code>Number of samples (2) does not match number of columns in data (3)</code></p>
+<p>This is because <code>SummarizedPy</code> maps <code>samples</code> and <code>features</code> to <code>data</code>by indexing.
+Thus, order of rows in these attributes is <strong>the</strong> source of truth.</p>
+<p>As a consequence, re-assigning <code>data</code> is not possible and will raise an <code>AttributeError</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;feature_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;feature1&quot;</span><span class="p">,</span> <span class="s2">&quot;feature2&quot;</span><span class="p">,</span> <span class="s2">&quot;feature3&quot;</span><span class="p">]})</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;sample_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sample1&quot;</span><span class="p">,</span> <span class="s2">&quot;sample2&quot;</span><span class="p">,</span> <span class="s2">&quot;sample3&quot;</span><span class="p">]})</span>
+
+<span class="n">sp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">SummarizedPy</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+                <span class="n">samples</span><span class="o">=</span><span class="n">samples</span><span class="p">)</span>
+
+<span class="c1"># Trying to re-assign .data will raise AttributeError</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+</code></pre></div>
+<p>Similarly, you will not be able to re-assign <code>.history</code> or <code>.results</code> (we will see this one later)</p>
+<p>You <strong>can</strong> however mutate in-place, but this will <strong>not</strong> be reflected in <code>history</code>
+and should therefore be done at your own peril. We like audit trails, right?
+<div class="highlight"><pre><span></span><code><span class="c1"># Mutate in-place possible but not recommended</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+</code></pre></div></p>
+<h2 id="filtering-by-sample-and-feature-metadata">Filtering by sample and feature metadata<a class="headerlink" href="#filtering-by-sample-and-feature-metadata" title="Permanent link">&para;</a></h2>
+<p>We can filter the entire <code>SummarizedPy</code> object based on variables in the <code>.features</code> and <code>.samples</code> attributes.
+This is easily done using the <code>filter_features</code> and <code>filter_samples</code> methods, resp.
+These functions take a <code>pandas query()</code> style expression or a boolean mask.
+Returning to our <code>load_example_data</code> example, we can filter based on sample, metadata:</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Filtering samples</span>
+<span class="c1"># Include sample condition variable (first six = ADC; last six = SCC)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="s2">&quot;condition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ADC&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;SCC&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span>
+
+<span class="c1"># Filter for SCC samples using pandas query expression</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_samples</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="s2">&quot;condition==&#39;SCC&#39;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check dimensions</span>
+<span class="n">sp</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+Similarly, we can filter based on feature metadata:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Filtering features</span>
+<span class="c1"># Create boolean vector indicating reverse hits</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="n">rev_hits</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;protein_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;REV&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
+
+<span class="c1"># Add as feature metadata</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;rev&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rev_hits</span>
+
+<span class="c1"># Filter out reverse hits using pandas query expression</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_features</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="s2">&quot;~rev&quot;</span><span class="p">)</span>
+
+<span class="c1"># Alternatively, use a boolean mask</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">filter_features</span><span class="p">(</span><span class="n">mask</span><span class="o">=~</span><span class="n">rev_hits</span><span class="p">)</span>
+
+<span class="c1"># Check dimensions</span>
+<span class="n">sp</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h2 id="missingness-filtering">Missingness filtering<a class="headerlink" href="#missingness-filtering" title="Permanent link">&para;</a></h2>
+<p>In MS-based -omics, missing data is a guarantee. Whether you have DDA or DIA, there will NA (or nan) values.
+When conducting differential expression analyses, you need sufficient valid values to base your fold changes on.
+It makes no sense trying to compute a fold change if one group has 90% missing values for some feature (at least not with linear models).
+We will not go into all the reasons for missingness, when it is and when it is not a problem;
+rather, we will simply assume that we want some ceiling on missingness.</p>
+<p>In Perseus (and proteomics more generally), the standard approaches to missingness filtering include:
+- % valid values across <strong>all</strong> samples
+- % valid values in <strong>at least one</strong> experimental condition
+- % valid values in <strong>every experimental condition</strong></p>
+<p>DEPy caters to all three and lets you set the threshold, expressed as the fraction of valid (i.e. non-nan) values.
+Simply set the <code>strategy=</code> to one of
+- <code>overall</code> (across all samples)
+- <code>any_condition</code> (at least one condition)
+- <code>all_conditions</code> (each condition)</p>
+<p>Note that if you use one of the condition-based methods,
+you need to set the <code>condition_column</code> parameter to indicate the name of the column in <code>samples</code> to filter on.</p>
+<p>Finally, set the <code>frac</code> parameter to the fraction of minimum valid values required (default to 0.75; i.e. $\ge$75% valid value).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Confirm the presence of nan values</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+
+<span class="c1"># Missingness filtering method</span>
+<span class="c1"># Across all samples (i.e. independent of condition)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_missingness</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;overall&quot;</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># At least one condition (i.e. as a fraction of either SCC or ADC)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_missingness</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;any_condition&quot;</span><span class="p">,</span>
+                      <span class="n">condition_column</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span>
+                      <span class="n">frac</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># In each condition (i.e. as a fraction of both SCC and ADC)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_missingness</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;all_conditions&quot;</span><span class="p">,</span>
+                      <span class="n">condition_column</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span>
+                      <span class="n">frac</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># Check dimensions</span>
+<span class="n">sp</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h2 id="transformations">Transformations<a class="headerlink" href="#transformations" title="Permanent link">&para;</a></h2>
+<p>There are several common data transformations and normalizations procedures in proteomics and metabolomics,
+each of which can be performed in a sample- or feature-wise manner.
+- <strong>log transformation</strong> (partly addresses the inherent heteroscedasticity in intensity data)
+- <strong>centering</strong> (subtracting a constant such as mean or median to remove offset differences)
+- <strong>standardization</strong> (aka z-scoring; enforces unit variance and symmetry about the mean, i.e. 0)</p>
+<p>Another powerful transformation that addresses both heteroscedasticity and can reduce intra-group variance is the
+<em>variance stabilizing normalization</em>, popularized by the R package <code>vsn</code>.
+In short, it uses a generalized logarithm with a linear transformation to remove the asymptote at 0 that otherwise occurs with the standard log transform.
+The affine (linear) transformation performs a column-wise centering and scaling with parameters estimated empirically.
+This method, initially introduced for microarray studies, has its roots in error models developed for gas chromatography.
+Check out the original <a href="https://pubmed.ncbi.nlm.nih.gov/12169536/">paper</a> by Wolfgang Huber et al.
+I personally use this a lot for untargeted metabolomics and with other tools such as <a href="https://biofam.github.io/MOFA2/">MOFA</a>.</p>
+<p>While many more transformations exist, the three listed ones are arguably the most common in proteomics.
+DEPy gives you the ability to perform each one in a column- or row-wise manner using the <code>transform_features</code> method.
+It uses numpy to make them blazingly fast where possible, and calls R for vsn.</p>
+<p>The three main parameters are:
+- method: one of <code>'log'</code>, <code>'center'</code>, <code>'z-score'</code>, <code>'vsn'</code>
+- by: one of <code>'mean'</code> or <code>'median'</code> for <code>method='center'</code> or an <code>int</code> for <code>method='log'</code>
+- axis: <code>0</code> for row-wise (feature-wise),  <code>1</code> column-wise (sample-wise) (omitted for methods <code>log</code> and <code>vsn</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Log transformation (base 2)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">transform_features</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Center data sample-wise by median</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">transform_features</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Feature-wise standardization</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">transform_features</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;z-score&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># vsn normalization</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">transform_features</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;vsn&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check data</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h2 id="imputation">Imputation<a class="headerlink" href="#imputation" title="Permanent link">&para;</a></h2>
+<p>Depending on whom you ask, this is either a valid or questionable idea. We will not debate it here.
+I would simply note (based on having conducted systematic trials) that you should <strong>only</strong> impute provided you have a sufficient number of valid values to base the imputation on.
+What constitutes <em>sufficient</em> is like asking 'how long is a piece of string', but if I <em>had to</em> pick a number, I would say $\ge$50% valid values per condition <em>at a minimum</em>.</p>
+<p>For our purposes here, missingness comes in two flavors:
+- MAR (missing at random): the missingness pattern is randomly distributed and independent of the features
+- MNAR (missing <em>not</em> at random): usually left-censored data in MS-based -omics, whereby features are missing due to low abundance.</p>
+<p>DEPy runs the ImputeLCMD R package under the hood. This is a great package, created by Cosmin Lazar et al.
+It comes with methods for MAR, MNAR, and <em>critically</em>, hybrid MAR-MNAR assumptions.
+Which assumption to use is beyond the scope of this tutorial, but check out Lazar's excellent <a href="https://pubmed.ncbi.nlm.nih.gov/26906401/">paper</a> on the topic.</p>
+<p>Accordingly, DEPy comes with all of those methods and supports all native parameters.
+Exploring them all is a bit much, so we will only demonstrate the <code>hybrid</code> method.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Filter excessive missinginess</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_missingness</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;overall&quot;</span><span class="p">)</span>
+
+<span class="c1"># Impute remaining missing values with hybrid approach</span>
+<span class="c1"># MAR = KNN (default)</span>
+<span class="c1"># MNAR = QRILC (default)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">impute_missing_values</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;Hybrid&quot;</span><span class="p">,</span> <span class="n">extra_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;mar&quot;</span><span class="p">:</span> <span class="s2">&quot;KNN&quot;</span><span class="p">,</span> <span class="s2">&quot;mnar&quot;</span><span class="p">:</span> <span class="s2">&quot;QRILC&quot;</span><span class="p">})</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h2 id="surrogate-variable-analysis">Surrogate variable analysis<a class="headerlink" href="#surrogate-variable-analysis" title="Permanent link">&para;</a></h2>
+<p>This is an <strong>excellent</strong> tool for any bioinformatician to have in their toolbox. Indeed, it has proven invaluable in some of my own work,
+which deals with real-world, messy data from humans and animals. The method is surprisingly intuitive for all its seeming complexity.
+Check out the original <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1994707/">paper</a> by Leek et al.; it is a fantastic read.</p>
+<h3 id="why-use-sva">Why use sva<a class="headerlink" href="#why-use-sva" title="Permanent link">&para;</a></h3>
+<p>Sometimes, we have known batch effects or technical covariates that can be readily included in our models as adjustment variables.
+However, sometimes, there can be <em>hidden</em> batch effects in your data that manifest as latent noise and correlations among features that we cannot account for.
+How do you include something you cannot measure?</p>
+<h3 id="this-is-why-sva">This is why sva<a class="headerlink" href="#this-is-why-sva" title="Permanent link">&para;</a></h3>
+<p>In a nutshell, surrogate variable analysis (sva) performs PCA on the residuals of the data matrix after regressing out a fully parametrized models
+that includes all known experimental and technical covariates. Then, it uses the resultant factors to capture latent covariation among features,
+check which features associates with the factors, computes a new model on the reduced set, and returns the latent factors (aka "surrogate variables"),
+which can be included as technical covariates in your subsequent model.</p>
+<p><em>neat...</em></p>
+<p>DEPy runs the <code>sva</code> R package with all its native arguments.
+Simply specify your fully parametrized model, including all variables of interest (both experimental ones you care about, and adjustment/technical/batch variables).
+Additionally, <code>sva</code> requires a so-called null model that includes only <em>known</em> adjustment variables. If you do not have any known ones, the default is to simply use an intercept model.
+Note that you must specify the models with R-style tilde expressions; e.g. <code>~var1+var2</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Filter excessive missinginess (this is important)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">filter_missingness</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;overall&quot;</span><span class="p">)</span>
+
+<span class="c1"># Log transform data (important)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">transform_features</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Optionally, impute missing remaining values (sva excludes any feature with nan values)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">impute_missing_values</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;Hybrid&quot;</span><span class="p">)</span>
+
+<span class="c1"># Run sva</span>
+<span class="c1"># Default null model: mod0 = &#39;~1&#39; (intercept-only)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">surrogate_variable_analysis</span><span class="p">(</span><span class="n">mod</span><span class="o">=</span><span class="s2">&quot;~condition&quot;</span><span class="p">)</span>
+
+<span class="c1"># Surrogate variables are added to samples attribute</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">samples</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h2 id="limma-trend">limma-trend<a class="headerlink" href="#limma-trend" title="Permanent link">&para;</a></h2>
+<p>Now for the actual differential expression analysis, we will use limma, brain child of Gordon Smyth
+(check out the legendary <a href="https://pubmed.ncbi.nlm.nih.gov/16646809/">paper</a>).
+Limma leverages an empirically estimated mean-variance trend as a prior to adjust for the heteroscedastic mean-variance common to so many -omics modalities.
+The Bayesian prior serves as a form shrinkage, which mitigates the inflated false positives and negatives
+that come with conducting fold change analysis on low- and high-abundant features if the mean-variance is not accounted for.
+This is particularly useful for small sample sizes.
+Limma-trend was implemented and adapted in the proteomics R packages <code>DEqMS</code> and <code>DEP</code> for these very reasons.
+Limma has been found to be more powerful and exert better FDR control than standard parametric statistics (i.e. t-test and ANOVA).
+Critically, <code>limma-trend</code> performs about as well when adjusting for the mean-variance trend using the feature-wise intensity distribution as
+when using peptide or PSM counts to adjust protein-level variance (see DEqMS <a href="https://pubmed.ncbi.nlm.nih.gov/32205417/">paper</a>).</p>
+<p>Another massive benefit to limma is that it can incorporate sample quality weights calculated by its <code>arrayWeights</code> function.
+In my years, I have found that it makes all the difference when working with data from human and animal samples.
+In short, the weights are calculated by allowing each feature to have a sample-specific source of variation.
+Using the overall mean-variance trend of the dataset, each sample can be quantified in terms of how much it deviates from the average (i.e. how 'noisy' a sample is).
+This information is then incorporated into the weights, which are reciprocal logarithms of that deviation
+(e.g. a quality weight of 0.5 is 2x as variable as the average sample; i.e. likely low quality).
+The weights take the experimental design into account and can be estimated for each sample or averaged as a function of some covariate
+(e.g. if quality was found to be reliably lower due to variable).</p>
+<p>Finally, limma is highly flexible due to being a linear model. it can incorporate mixed effects, repeated measures, and between- and within-subjects factors.</p>
+<p>Limma is available with most of its native parameters. Simply specify the design, the contrasts, whether to include array weights, etc.
+- <code>design_formula</code> (R-style tilde expression with covariates of interest)
+- <code>contrasts</code> (dictionary with the names and definitions of contrasts)
+- <code>array_weights</code> (boolean; whether to include sample quality weights)</p>
+<h4 id="a-brief-note-on-design-formulae">A brief note on design formulae<a class="headerlink" href="#a-brief-note-on-design-formulae" title="Permanent link">&para;</a></h4>
+<p>DEPy will automatically enforce a marginal means model; that is, an intercept will <strong>not</strong> be included even if you specify one.
+This is to keep the design matrix tidy to ensure proper matching between its column names and contrast terms.
+To this end, DEPy will:
+- inject a '~' if you forget one
+- add a '0+' to the start of the <code>design_formula</code></p>
+<p>In general, the intercept term is often of little interest (it represents the grand average) and will not affect fold changes.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Specify design formula (including &#39;condition&#39; and surrogate variables)</span>
+<span class="n">des</span> <span class="o">=</span> <span class="s2">&quot;~condition+sv_1+sv_2+sv_3&quot;</span>
+
+<span class="c1"># Define contrast (levels must be present in covariates above)</span>
+<span class="n">contr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;SCCvsADC&quot;</span><span class="p">:</span> <span class="s2">&quot;SCC-ADC&quot;</span><span class="p">}</span>
+
+<span class="c1"># Run limma-trend with array_weights option</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">limma_trend_dea</span><span class="p">(</span><span class="n">design_formula</span><span class="o">=</span><span class="n">des</span><span class="p">,</span> <span class="n">contrasts</span><span class="o">=</span><span class="n">contr</span><span class="p">,</span> <span class="n">array_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Check newly created results attribute</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">results</span>
+
+<span class="c1"># Check history</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">history</span>
+</code></pre></div>
+<h2 id="volcano-plots">Volcano plots<a class="headerlink" href="#volcano-plots" title="Permanent link">&para;</a></h2>
+<p>Finally, we will plot the estimate log fold changes against the log-transformed nominal p-values per feature for each contrast.
+<em>Better known as a volcano plot.</em>
+This is very simple in DEPy: you can either provide a list contrast names or let DEPy produce one volcano plot per contrast.
+Plots are generated with <code>matplotlib</code> and returned as a tuple of dictionaries with keys = contrast names
+and values = <code>matplotlib.Figure</code> or <code>matplotlib.Axes</code> objects.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Generate volcano plots for all contrasts</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">volcano_plot</span><span class="p">()</span>
+
+<span class="c1"># Optionally, specify the name of a contrast</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">volcano_plot</span><span class="p">(</span><span class="n">contrasts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SCCvsADC&quot;</span><span class="p">])</span>
+</code></pre></div>
+By default, the function plots the top 3 up- and top 3 down-regulated features according to FDR.
+This can be changed with the <code>top_n</code> parameter.
+You can also change color scheme by providing a dictionary with names <code>'Up'</code>, <code>'Down'</code>, and <code>'ns'</code>,
+and hexcodes or valid color names as values.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Highlight top up- and down-regulated features</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">volcano_plot</span><span class="p">(</span><span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Change colors</span>
+<span class="n">de_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Up&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;Down&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;ns&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">}</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">volcano_plot</span><span class="p">(</span><span class="n">de_colors</span><span class="o">=</span><span class="n">de_colors</span><span class="p">)</span>
+</code></pre></div>
+<p>There you have it!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.tabs", "content.code.annotate", "search.suggest"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,33 @@
+name: depy
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Core system/runtime
+  - python=3.9
+  - pip
+  - r-base=4.1.1
+  - r-essentials
+
+  # R dependencies (from CRAN or Bioconductor)
+  - r-tidyverse
+  - r-optparse
+  - r-arrow
+  - r-imputelcmd
+  - bioconductor-biobase
+  - bioconductor-limma
+  - bioconductor-vsn
+  - bioconductor-sva
+
+  # Install pure Python packages via pip
+  - pip:
+      - pandas
+      - numpy
+      - matplotlib
+      - pyjanitor
+      - openpyxl
+      - adjustText
+      - jupyter
+      - pytest
+      - summarizedpy
