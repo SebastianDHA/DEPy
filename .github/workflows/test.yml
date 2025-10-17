@@ -33,6 +33,7 @@ jobs:
       # Step 4: Run tests on editable install
       - name: Run tests (editable install)
         run: |
+          pip install pytest
           pytest -v
 
       # Step 5: Build wheel and test it
