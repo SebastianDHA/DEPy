@@ -1,5 +1,4 @@
 #!/usr/bin/env Rscript
-env_path <- grep("/envs/depy", .libPaths())
 
 # Set seed
 set.seed(1234)
@@ -10,7 +9,7 @@ packages <- c("arrow", "optparse")
 
 # Load packages quietly
 print(paste0(Sys.time(), ": ", "Loading required R packages..."))
-invisible(lapply(packages, FUN = function(pkg) 
+invisible(lapply(packages, FUN = function(pkg)
 {suppressWarnings(suppressMessages(library(pkg, character.only = TRUE, quietly = T)))}
 ))
 
@@ -40,7 +39,7 @@ feature_matrix <- as.matrix(feature_matrix)
 # Defaults below sourced from ImputeLCMD source code: https://github.com/cran/imputeLCMD/blob/master/R
 print(paste0(Sys.time(), ": ", "Running imputation..."))
 imputation <- function(mat=NULL, method=NULL, K=NULL, q=NULL, tune.sigma=NULL, MAR=NULL, MNAR=NULL) {
-  
+
   if (method == "KNN") {
     if (is.null(K)) {
       K<-15
@@ -80,29 +79,29 @@ imputation <- function(mat=NULL, method=NULL, K=NULL, q=NULL, tune.sigma=NULL, M
     if (is.null(MAR)) {
       MAR<-"KNN"
       print(paste0("Running Hybrid with default MAR=", MAR))
-      
+
     }
     if (is.null(MNAR)) {
       MNAR<-"QRILC"
       print(paste0("Running Hybrid with default MNAR=", MNAR))
     }
-      
+
     mat <- imputeLCMD::impute.MAR.MNAR(
-    dataSet.mvs = mat, 
-    model.selector = imputeLCMD::model.Selector(mat), 
-    method.MAR = MAR, 
+    dataSet.mvs = mat,
+    model.selector = imputeLCMD::model.Selector(mat),
+    method.MAR = MAR,
     method.MNAR = MNAR)}
   return(mat)
-  
+
 }
 
 # Run imputation
-feature_matrix <- imputation(mat=feature_matrix, 
-                             method=opt$method, 
-                             K=opt$k, 
-                             q=opt$q, 
-                             tune.sigma=opt$tune_sigm, 
-                             MAR=opt$mar, 
+feature_matrix <- imputation(mat=feature_matrix,
+                             method=opt$method,
+                             K=opt$k,
+                             q=opt$q,
+                             tune.sigma=opt$tune_sigm,
+                             MAR=opt$mar,
                              MNAR=opt$mnar)
 feature_matrix <- as.data.frame(feature_matrix)
 

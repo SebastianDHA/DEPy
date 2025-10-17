@@ -41,9 +41,13 @@ pip install summarizedpy
 import depy as dp
 
 sp = dp.SummarizedPy()
-sp = sp.import_from_delim_file(path=path/to/pgroup.tsv, delim="\t")
+sp = sp.import_from_delim_file(path="path/to/pgroup.tsv", delim="\t")
 ```
-See the full tutorial for more.
+See the full [tutorial](docs/usage.md) for more.
+
+## Documentation
+- [Installation guide](docs/installation.md)
+- [Usage](docs/usage.md)
 
 ## Credits
 This package leverages amazing packages from the R and Bioconductor community, including [limma](https://bioconductor.org/packages/3.20/bioc/html/limma.html), [vsn](https://bioconductor.org/packages/release/bioc/html/vsn.html), [sva](https://bioconductor.org/packages/release/bioc/html/sva.html), [ImputeLCMD](https://cran.r-project.org/package=imputeLCMD), and [Tidyverse](https://www.tidyverse.org/).

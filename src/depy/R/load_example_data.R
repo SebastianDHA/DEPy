@@ -1,5 +1,4 @@
 #!/usr/bin/env Rscript
-env_path <- grep("/envs/depy", .libPaths())
 
 # Set seed
 set.seed(1234)
@@ -10,8 +9,8 @@ packages <- c("arrow", "optparse")
 
 # Load packages quietly
 print(paste0(Sys.time(), ": ", "Loading required R packages..."))
-invisible(lapply(packages, FUN = function(pkg) 
-{suppressWarnings(suppressMessages(library(pkg, character.only = TRUE, quietly = T, lib.loc = .libPaths()[env_path])))}
+invisible(lapply(packages, FUN = function(pkg)
+{suppressWarnings(suppressMessages(library(pkg, character.only = TRUE, quietly = T)))}
 ))
 
 # Define expected arguments

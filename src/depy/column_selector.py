@@ -1,20 +1,27 @@
-"""A ColumnSelector for SummarizedPy objects"""
-
 import pandas as pd
 import re
 from typing import Optional, List
 
 class ColumnSelector:
     """
-    Object for selecting columns in SummarizedPy using RegEx or a list of strings.
+    Object for pre-selecting columns when constructing SummarizedPy from file.
 
     Parameters
     ----------
-        names : list, optional
-            A list of strings matching column names.
-        regex : str, optional
-            A string that can be interpreted as a regular expression
-            by re.search. Note that the search is case-insensitive.
+    names : list, optional
+        A list of strings matching column names.
+    regex : str, optional
+        A string that can be interpreted as a regular expression
+        by re.search. Note that the search is case-insensitive.
+
+    Examples
+    --------
+    Define columns to import from file. Assume data are in columns labeled "LFQ_intensity_*".
+
+    >>> import depy as dp
+    >>> data = dp.ColumnSelector(regex="LFQ_intensity_")
+    >>> features = dp.ColumnSelector(names=["proteinID", "geneSymbol", "proteinDescription"])
+    >>> sp = dp.SummarizedPy().import_from_delim_file(path="my/path/proteingroups.txt", delim='\t', data_selector=data, feature_selector=features)
     """
 
     def __init__(self, names: Optional[List[str]] = None, regex: Optional[str] = None):

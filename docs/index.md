@@ -7,8 +7,8 @@ While Python containers for single-cell data exist within the [scverse](https://
 
 - [Installation](installation.md)
 - [Usage](usage.md)
-- [API]()
-- [History](../HISTORY.md)
+- [API](api.md)
+- [History](HISTORY.md)
 
 ## The power of transcriptomics unleashed in MS-based -omics
 Discovery proteomics shares a lot of statistical similarities with transcriptomics data once you have the final protein- or peptide-level intensity values (like a protein groups matrix from FragPipe or MaxQuant).

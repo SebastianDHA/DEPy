@@ -1,0 +1,42 @@
+site_name: DEPy
+site_description: A Python–R hybrid package for differential expression analysis.
+repo_url: https://github.com/SebastianDHA/DEPy
+repo_name: SebastianDHA/DEPy
+
+theme:
+  name: material
+  features:
+    - navigation.expand
+    - navigation.tabs
+    - content.code.annotate
+    - search.suggest
+  palette:
+    primary: green
+    accent: pink
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - API Reference: api.md
+  - Changelog: HISTORY.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - tables
+  - footnotes
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: false
+            docstring_style: numpy
