@@ -1,6 +1,10 @@
 # History
 
-## 0.1.3 (2025-1017)
+## 0.1.4 (2025-10-23)
+
+* Fixed a minor bug in filtering functions that would sometimes cause failure when running multiple filters in succession.
+
+## 0.1.3 (2025-10-17)
 
 * Added loads of extra documentation and usage examples.
 
