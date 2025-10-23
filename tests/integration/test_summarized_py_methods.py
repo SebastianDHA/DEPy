@@ -3,6 +3,7 @@
 """Integration tests for SummarizedPy methods."""
 import pytest
 import numpy as np
+import re
 from depy.summarized_py import SummarizedPy
 
 @pytest.mark.integration
@@ -52,6 +53,23 @@ def test_filter_features(load_data_sp):
     obj = load_data_sp
     obj = obj.filter_features(expr="protein_id in ['REV__Q9H0I9']")
     assert obj.data.shape[0] == 1
+
+@pytest.mark.integration
+def test_filter_index_reset(load_data_sp):
+    obj = load_data_sp
+    obj_filter = obj.filter_missingness(strategy="overall")
+    assert obj.features.index[-1] != obj_filter.features.index[-1]
+
+@pytest.mark.integration
+def test_multiple_filters(load_data_sp):
+    obj = load_data_sp
+    obj = obj.filter_missingness(strategy="overall")
+    rev_hits = obj.features["protein_id"].apply(lambda x: bool(re.match("REV", x)))
+    obj.features["rev"] = rev_hits
+    obj_mask = obj.filter_features(mask=~rev_hits)
+    obj_expr = obj.filter_features(expr="~rev")
+    assert obj_mask.features.shape == obj_expr.features.shape
+    assert obj_mask.features.shape[0] < obj.features.shape[0]
 
 @pytest.mark.integration
 def test_import_from_delim_file(tmp_path, test_df):

@@ -321,14 +321,14 @@ class SummarizedPy:
             keep_index = meta.query(expr).index
             tmp_str = f" with expr='{expr}'"
         elif mask is not None:
-            keep_index = meta.index[mask]
+            keep_index = np.flatnonzero(mask)
             tmp_str = None
         else:
             raise ValueError("Error: must supply either expr or mask")
 
-        new_meta = meta.iloc[keep_index]
+        new_meta = meta.loc[keep_index]
         new_meta = new_meta.reset_index(drop=True)
-        new_data = self.data.take(keep_index, axis=axis_num)
+        new_data = self._data.take(keep_index, axis=axis_num)
 
         if axis == "features":
             new_obj = self.__class__(data=new_data, features=new_meta, samples=self.samples)
@@ -491,7 +491,11 @@ class SummarizedPy:
         else:
             raise ValueError("Error: must choose one of 'overall', 'each_condition', or 'any_condition'")
 
-        new_obj = self.__class__(data=self._data[result], features=self.features.iloc[result], samples=self.samples)
+        new_data = self._data[result]
+        new_features = self.features.iloc[result].reset_index(drop=True)
+        new_samples = self.samples
+
+        new_obj = self.__class__(data=new_data, features=new_features, samples=new_samples)
         new_obj._history = self._history + [
             f"Filtered features by missingness with strategy='{strategy}', frac={frac}: {new_obj.features.shape[0]} kept"]
 
