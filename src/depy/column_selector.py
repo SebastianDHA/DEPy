@@ -33,12 +33,12 @@ class ColumnSelector:
         Parameters
         ----------
         df : pd.DataFrame
-            A Pandas DataFrame object on which to perform column selection.
+            A Pandas ``DataFrame`` object on which to perform column selection.
 
         Returns
         -------
-            SummarizedPy
-                A Pandas DataFrame with selected columns.
+            DataFrame
+                A pandas ``DataFrame`` with selected columns.
 
         Raises
         ------

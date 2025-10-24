@@ -72,6 +72,15 @@ def test_multiple_filters(load_data_sp):
     assert obj_mask.features.shape[0] < obj.features.shape[0]
 
 @pytest.mark.integration
+def test_select_variable_features(load_data_sp, mocker):
+    obj = load_data_sp
+    mock_show = mocker.patch("matplotlib.pyplot.show")
+    obj = obj.filter_missingness(strategy="overall")
+    obj_hvf = obj.select_variable_features(top_n=100, plot=True)
+    mock_show.assert_called_once()
+    assert obj_hvf.data.shape[0] < obj.data.shape[0]
+
+@pytest.mark.integration
 def test_import_from_delim_file(tmp_path, test_df):
     test_df = test_df
 

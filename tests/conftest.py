@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import pytest
+import matplotlib
+matplotlib.use("Agg")
 
 @pytest.fixture(scope="session")
 def load_data_sp():
