@@ -24,7 +24,8 @@ dependencies = [
     "pyarrow",
     "adjustText",
     "pyjanitor",
-    "openpyxl"
+    "openpyxl",
+    "statsmodels"
 ]
 
 [tool.setuptools.packages.find]

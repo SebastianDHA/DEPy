@@ -48,7 +48,7 @@ jobs:
         run: |
           source $CONDA/etc/profile.d/conda.sh
           conda activate depy
-          python -m pip install pytest
+          python -m pip install pytest pytest-mock
           python -m pytest -v
 
       # Step 5: Build wheel and test it
