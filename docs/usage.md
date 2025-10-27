@@ -230,6 +230,33 @@ sp
 # Check history
 sp.history
 ```
+## Highly variable feature selection
+Sometimes, you have too many features to analyze. This can reduce your power in DEA due to the multiple comparisons problem.
+In machine learning, you may want to start building a regularized model with a smaller subset of features so as not to waste computational time on
+low-variance features.
+
+DEPy has a built-in solution for this with its ```select_variable_features``` method.
+When selecting high-variance features, it is important to account for the heteroscedasticity in the data.
+Otherwise, we would end up biasing our selection, as the underlying feature variance increases as a function of the average intensity.
+
+Similar to the approach taken by ```Seurat```, DEPy models the mean-variance trend of the data by fitting a LOWESS model to the feature-wise means and standard deviations.
+Note that this calculation will be done on log transformed data. DEPy detects whether a log transformation has been done previously
+based on the object's ```history``` attribute and runs one if not (the data will be returned un-transformed).
+It then computes standardized residuals (i.e. the deviation from the fitted dispersion values) and ranks the features based on these z-scores.
+
+You can then choose to return either the ``top_n`` (e.g. top 100) or ``top_percentile`` (e.g. top 5th percentile) of variable features.
+Additionally, the method can display a plot of the data's mean-variance relationship, the fitted LOWESS trend, and highly variable features (HVF) labeled.
+
+```Py
+# Return the top 100 most variable features and show mean-variance trend plot
+sp = sp.select_variable_features(top_n=100, plot=True)
+
+# Return the top 5% most variable features (calculated as 100-top_percentile)
+sp = sp.select_variable_features(top_percentile=5, plot=True)
+
+# Check history
+sp.history
+```
 
 ## Transformations
 There are several common data transformations and normalizations procedures in proteomics and metabolomics,
@@ -351,8 +378,8 @@ sp.history
 ## limma-trend
 Now for the actual differential expression analysis, we will use limma, brain child of Gordon Smyth
 (check out the legendary [paper](https://pubmed.ncbi.nlm.nih.gov/16646809/)).
-Limma leverages an empirically estimated mean-variance trend as a prior to adjust for the heteroscedastic mean-variance common to so many -omics modalities.
-The Bayesian prior serves as a form shrinkage, which mitigates the inflated false positives and negatives
+Limma leverages an empirically estimated mean-variance trend as a prior to adjust for the heteroscedasticity common to so many -omics modalities.
+This Bayesian prior serves as a form shrinkage, which mitigates the inflated false positive and negative rates
 that come with conducting fold change analysis on low- and high-abundant features if the mean-variance is not accounted for.
 This is particularly useful for small sample sizes.
 Limma-trend was implemented and adapted in the proteomics R packages ```DEqMS``` and ``DEP`` for these very reasons.

@@ -1,5 +1,9 @@
 # History
 
+## 0.2.0 (2025-10-24)
+
+* Added select_variable_features method to allow filtering for highly variable features based on mean-variance trend deviation.
+
 ## 0.1.4 (2025-10-23)
 
 * Fixed a minor bug in filtering functions that would sometimes cause failure when running multiple filters in succession.
