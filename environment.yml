@@ -31,3 +31,4 @@ dependencies:
       - jupyter
       - pytest
       - summarizedpy
+      - statsmodels
