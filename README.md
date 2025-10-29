@@ -1,6 +1,6 @@
 # DEPy
 
-![PyPI version](https://img.shields.io/pypi/v/DEPy.svg)
+<img src="https://raw.githubusercontent.com/SebastianDHA/DEPy/main/docs/images/depy_banner.svg">
 
 A differential expression analysis package for bulk proteomics (and metabolomics) data, which leverages transcriptomics tools.
 Inspired by R tools like DEP and SummarizedExperiment, it brings the power of Bioconductor to Python.

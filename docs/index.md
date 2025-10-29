@@ -1,4 +1,6 @@
 # Welcome to DEPy's documentation!
+![banner](images/depy_banner.svg)
+
 DEPy (aka **SummarizedPy**) is a Python library for bulk proteomics (and metabolomics) differential expression analysis.
 It was inspired by the R packages DEP and SummarizedExperiment.
 While Python containers for single-cell data exist within the [scverse](https://scverse.org/), tools for bulk -omics are less common, especially when it comes to proteomics.
