@@ -1,864 +1,130 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API Reference - DEPy</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Reference";
+        var mkdocs_page_input_path = "api.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="A Python–R hybrid package for differential expression analysis.">
-      
-      
-      
-      
-        <link rel="prev" href="../usage/">
-      
-      
-        <link rel="next" href="../HISTORY/">
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
-    
-    
-      
-        <title>API Reference - DEPy</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
-      
-      
+<body class="wy-body-for-nav" role="document">
 
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
-    
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="pink">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#api-reference" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="DEPy" class="md-header__button md-logo" aria-label="DEPy" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            DEPy
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              API Reference
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-    
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> DEPy
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
 </div>
-      
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/SebastianDHA/DEPy" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
-  </div>
-  <div class="md-source__repository">
-    SebastianDHA/DEPy
-  </div>
-</a>
       </div>
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
 
-      </a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage/">Usage</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#depy.summarized_py">summarized_py</a>
     </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../installation/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Installation
-
-      </a>
+    <li class="toctree-l2"><a class="reference internal" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.filter_features">filter_features</a>
     </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../usage/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Usage
-
-      </a>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.filter_missingness">filter_missingness</a>
     </li>
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
-  
-  
-    
-  
-  API Reference
-
-      </a>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.filter_samples">filter_samples</a>
     </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../HISTORY/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Changelog
-
-      </a>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.import_from_delim_file">import_from_delim_file</a>
     </li>
-  
-
-      
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.impute_missing_values">impute_missing_values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.limma_trend_dea">limma_trend_dea</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.load_example_data">load_example_data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.plot_pca">plot_pca</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.select_variable_features">select_variable_features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.surrogate_variable_analysis">surrogate_variable_analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.transform_features">transform_features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.summarized_py.SummarizedPy.volcano_plot">volcano_plot</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#depy.column_selector">column_selector</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#depy.column_selector.ColumnSelector">ColumnSelector</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#depy.column_selector.ColumnSelector.select_cols">select_cols</a>
+    </li>
+        </ul>
+    </li>
     </ul>
-  </div>
-</nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-  
-
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="DEPy" class="md-nav__button md-logo" aria-label="DEPy" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    DEPy
-  </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/SebastianDHA/DEPy" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
-  </div>
-  <div class="md-source__repository">
-    SebastianDHA/DEPy
-  </div>
-</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../HISTORY/">Changelog</a>
+                </li>
+              </ul>
+      </div>
     </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Installation
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../usage/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Usage
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#depy.summarized_py" class="md-nav__link">
-    <span class="md-ellipsis">
-      summarized_py
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy" class="md-nav__link">
-    <span class="md-ellipsis">
-      SummarizedPy
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SummarizedPy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.filter_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      filter_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.filter_missingness" class="md-nav__link">
-    <span class="md-ellipsis">
-      filter_missingness
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.filter_samples" class="md-nav__link">
-    <span class="md-ellipsis">
-      filter_samples
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.import_from_delim_file" class="md-nav__link">
-    <span class="md-ellipsis">
-      import_from_delim_file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.impute_missing_values" class="md-nav__link">
-    <span class="md-ellipsis">
-      impute_missing_values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.limma_trend_dea" class="md-nav__link">
-    <span class="md-ellipsis">
-      limma_trend_dea
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.load_example_data" class="md-nav__link">
-    <span class="md-ellipsis">
-      load_example_data
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.plot_pca" class="md-nav__link">
-    <span class="md-ellipsis">
-      plot_pca
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.select_variable_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      select_variable_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.surrogate_variable_analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      surrogate_variable_analysis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.transform_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      transform_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.volcano_plot" class="md-nav__link">
-    <span class="md-ellipsis">
-      volcano_plot
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#depy.column_selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      column_selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#depy.column_selector.ColumnSelector" class="md-nav__link">
-    <span class="md-ellipsis">
-      ColumnSelector
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ColumnSelector">
-      <ul class="md-nav__list">
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">DEPy</a>
         
-          <li class="md-nav__item">
-  <a href="#depy.column_selector.ColumnSelector.select_cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      select_cols
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/SebastianDHA/DEPy/edit/master/docs/api.md">Edit on SebastianDHA/DEPy</a>
     </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../HISTORY/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Changelog
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#depy.summarized_py" class="md-nav__link">
-    <span class="md-ellipsis">
-      summarized_py
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy" class="md-nav__link">
-    <span class="md-ellipsis">
-      SummarizedPy
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SummarizedPy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.filter_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      filter_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.filter_missingness" class="md-nav__link">
-    <span class="md-ellipsis">
-      filter_missingness
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.filter_samples" class="md-nav__link">
-    <span class="md-ellipsis">
-      filter_samples
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.import_from_delim_file" class="md-nav__link">
-    <span class="md-ellipsis">
-      import_from_delim_file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.impute_missing_values" class="md-nav__link">
-    <span class="md-ellipsis">
-      impute_missing_values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.limma_trend_dea" class="md-nav__link">
-    <span class="md-ellipsis">
-      limma_trend_dea
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.load_example_data" class="md-nav__link">
-    <span class="md-ellipsis">
-      load_example_data
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.plot_pca" class="md-nav__link">
-    <span class="md-ellipsis">
-      plot_pca
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.select_variable_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      select_variable_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.surrogate_variable_analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      surrogate_variable_analysis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.transform_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      transform_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#depy.summarized_py.SummarizedPy.volcano_plot" class="md-nav__link">
-    <span class="md-ellipsis">
-      volcano_plot
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#depy.column_selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      column_selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#depy.column_selector.ColumnSelector" class="md-nav__link">
-    <span class="md-ellipsis">
-      ColumnSelector
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ColumnSelector">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#depy.column_selector.ColumnSelector.select_cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      select_cols
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+                <h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
 
 
 <div class="doc doc-object doc-module">
@@ -901,173 +167,141 @@
     <div class="doc doc-contents ">
 
 
+
         <p>A class to hold bulk proteomics (and metabolomics) data and process it for differential expression analysis.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>data</code>
-            </td>
-            <td>
-                  <code><span title="numpy.ndarray">ndarray</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>data</code></b>
+                  (<code><span title="numpy.ndarray">ndarray</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A 2D array with shape=(features, samples) holding numerical intensity data.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>features</code>
-            </td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>features</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A DataFrame holding feature metadata.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>samples</code>
-            </td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A DataFrame holding sample metadata.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Attributes:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td><code><span title="depy.summarized_py.SummarizedPy.data">data</span></code></td>
-            <td>
-                  <code><span title="numpy.ndarray">ndarray</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>data</code></b>
+                  (<code><span title="numpy.ndarray">ndarray</span></code>)
+              –
               <div class="doc-md-description">
                 <p>A 2D array with shape=(features, samples) holding numerical intensity data.</p>
               </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="depy.summarized_py.SummarizedPy.features">features</span></code></td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>features</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
               <div class="doc-md-description">
                 <p>A DataFrame holding feature metadata.</p>
               </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="depy.summarized_py.SummarizedPy.samples">samples</span></code></td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
               <div class="doc-md-description">
                 <p>A DataFrame holding sample metadata.</p>
               </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="depy.summarized_py.SummarizedPy.history">history</span></code></td>
-            <td>
-                  <code><span title="list">list</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>history</code></b>
+                  (<code><span title="list">list</span></code>)
+              –
               <div class="doc-md-description">
                 <p>A list of strings documenting each valid class module call.</p>
               </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="depy.summarized_py.SummarizedPy.results">results</span></code></td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>results</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
               <div class="doc-md-description">
                 <p>A DataFrame holding DEA results generated by limma_trend_dea method.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If supplied data, features, or samples are incorrect classes.</p>
               </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
+            </li>
+            <li>
                   <code><span title="TypeError">TypeError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If data.shape[0] != features.shape[0] or data.shape[1] != samples.shape[0].</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Constructing SummarizedPy object from numpy array and pandas DataFrame.</p>
@@ -1082,7 +316,6 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">SummarizedPy</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="n">samples</span><span class="p">)</span>
 <span class="go">&lt;SummarizedPy(data=ndarray(shape=(3, 3), dtype=int64), features=DataFrame(shape=(3, 1)), samples=DataFrame(shape=(3, 1)))&gt;</span>
 </code></pre></div>
-
 
 
 
@@ -1118,98 +351,87 @@
         <p>Filter SummarizedPy object based on feature metadata, using either Pandas-like query strings or a mask.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>expr</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>expr</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A Pandas-style query string that can be interpreted by pd.obj.query(expr=expr).</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>mask</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>mask</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A boolean mask for subsetting.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A filtered <code>SummarizedPy</code> object.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If no valid <code>expr</code> or <code>mask</code> argument is supplied.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Filter out reverse hits in example dataset PXD000438.</p>
@@ -1242,42 +464,33 @@
 overall, all conditions, or any condition.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>frac</code>
-            </td>
-            <td>
-                  <code><span title="float">float</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>frac</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.75</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Minimum percentage valid values. Features with missingness
 greater than or equal to (1 - frac) will be excluded.</p>
               </div>
-            </td>
-            <td>
-                  <code>0.75</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>strategy</code>
-            </td>
-            <td>
-                  <code>(<span title="overall">overall</span>, <span title="all_conditions">all_conditions</span>, <span title="any_condition">any_condition</span>)</code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>strategy</code></b>
+                  (<code>(<span title="overall">overall</span>, <span title="all_conditions">all_conditions</span>, <span title="any_condition">any_condition</span>)</code>, default:
+                      <code>&#39;overall&#39;</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Filtering strategy:</p>
 <ul>
@@ -1288,77 +501,69 @@ greater than or equal to (1 - frac) will be excluded.</p>
   one condition defined by <code>condition_column</code>.</li>
 </ul>
               </div>
-            </td>
-            <td>
-                  <code>&#39;overall&#39;</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>condition_column</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>condition_column</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Name of column in the <code>samples</code> attribute on which to base
 filtering, in case of 'all_conditions' or 'any_condition'.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A filtered <code>SummarizedPy</code> object.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If an invalid <code>strategy</code> is supplied or if <code>condition_column</code> is required but missing.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Filter out missing values in example dataset PXD000438.</p>
@@ -1388,98 +593,87 @@ filtering, in case of 'all_conditions' or 'any_condition'.</p>
         <p>Filter SummarizedPy object based on sample metadata, using either Pandas-like query strings or a mask.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>expr</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>expr</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A Pandas-style query string that can be interpreted by pd.obj.query(expr=expr).</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>mask</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>mask</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A boolean mask for subsetting.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A filtered <code>SummarizedPy</code> object.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If no valid <code>expr</code> or mask argument is supplied.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Filter for ADC samples in example dataset PXD000438.</p>
@@ -1524,109 +718,72 @@ Values in data can be replaced with NaN to indicate missingness (e.g. intensity 
 Column names can be automatically cleaned with the pyjanitor clean_names function.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>path</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>path</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
               <div class="doc-md-description">
                 <p>Path to file to read in.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>delim</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>delim</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
               <div class="doc-md-description">
                 <p>Delimiter to parse file (e.g. '     ' for .txt or ',' for .csv).</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>data_selector</code>
-            </td>
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="ColumnSelector (depy.column_selector.ColumnSelector)" href="#depy.column_selector.ColumnSelector">ColumnSelector</a></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>data_selector</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="ColumnSelector (depy.column_selector.ColumnSelector)" href="#depy.column_selector.ColumnSelector">ColumnSelector</a></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A <code>ColumnSelector</code> object with specified names or regex patterns
 to extract data columns in file. If not specified,
 defaults to all 'number' dtype columns.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>feature_selector</code>
-            </td>
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="ColumnSelector (depy.column_selector.ColumnSelector)" href="#depy.column_selector.ColumnSelector">ColumnSelector</a></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>feature_selector</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="ColumnSelector (depy.column_selector.ColumnSelector)" href="#depy.column_selector.ColumnSelector">ColumnSelector</a></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A <code>ColumnSelector</code> object with specified names or regex patterns
 to extract feature metadata columns in file. If not specified,
 defaults to all object dtype columns.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>replace_val_with_nan</code>
-            </td>
-            <td>
-                  <code><span title="float">float</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>replace_val_with_nan</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A float numeric value in data to replace with np.nan to indicate missingness (e.g. 0).</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>clean_column_names</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>clean_column_names</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Whether to clean column names in file before processing. Note that column selection
 happens on the cleaned column names! Thus, you have to account for this
@@ -1634,37 +791,35 @@ when instantiating the <code>ColumnSelector</code> object. Cleaning will coerce
 all string to lower case; spaces and hyphens will be replaced with underscores,
 and leading and trailing whitespace will be trimmed.</p>
               </div>
-            </td>
-            <td>
-                  <code>False</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A <code>SummarizedPy</code> object.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Read in data from protein groups file (e.g. MQ or FragPipe) and construct SummarizedPy object.
@@ -1707,25 +862,22 @@ Assume data are in columns containing sub-string 'LFQ_intensity_'.</p>
 https://cran.r-project.org/web/packages/imputeLCMD/imputeLCMD.pdf</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>method</code>
-            </td>
-            <td>
-                  <code>(<span title="Hybrid">Hybrid</span>, <span title="KNN">KNN</span>, <span title="SVD">SVD</span>, <span title="MLE">MLE</span>, <span title="QRILC">QRILC</span>, <span title="MinDet">MinDet</span>, <span title="MinProb">MinProb</span>)</code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>method</code></b>
+                  (<code>(<span title="Hybrid">Hybrid</span>, <span title="KNN">KNN</span>, <span title="SVD">SVD</span>, <span title="MLE">MLE</span>, <span title="QRILC">QRILC</span>, <span title="MinDet">MinDet</span>, <span title="MinProb">MinProb</span>)</code>, default:
+                      <code>&#39;Hybrid&#39;</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Imputation method to apply:
 - 'Hybrid' : Uses an empirical approach (quantile regression) to find a threshold
@@ -1745,19 +897,13 @@ https://cran.r-project.org/web/packages/imputeLCMD/imputeLCMD.pdf</p>
 - 'MinProb' : Uses imputation by random draws from a Gaussian distribution centered on
   the minimum value. Defaults to q=0.01 and tune_sigma=1.</p>
               </div>
-            </td>
-            <td>
-                  <code>&#39;Hybrid&#39;</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>extra_args</code>
-            </td>
-            <td>
-                  <code><span title="dict">dict</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>extra_args</code></b>
+                  (<code><span title="dict">dict</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Used in conjunction with methods that take additional parameters.</p>
 <p>Valid key-value pairs include:</p>
@@ -1772,60 +918,58 @@ https://cran.r-project.org/web/packages/imputeLCMD/imputeLCMD.pdf</p>
   SD of the MNAR distribution (QRILC, MinProb).</li>
 </ul>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A <code>SummarizedPy</code> object with imputed missing values.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If an invalid value is supplied to 'method'.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Impute missing values using ImputeLCMD's hybrid strategy.
@@ -1875,130 +1019,91 @@ weights &gt;1 are less variable than the average and tend to reflect higher qual
 this tends to make weights more symmetric around 1 (average/equality), thus up- and down-weighting samples by similar magnitudes, rather disproportionately up-weighting good samples.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>design_formula</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>design_formula</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A formula describing the linear model. Covariates must be present in samples attribute.
 Must begin with a tilde (~) and add covariates with '+'.
 Note: formula may not contain intercept term</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>contrasts</code>
-            </td>
-            <td>
-                  <code><span title="dict">dict</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>contrasts</code></b>
+                  (<code><span title="dict">dict</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A dictionary containing contrast labels (keys) and contrast definitions (values).
 Contrasts are defined by adding or subtracting levels of the covariates
 included in the design formula. Additional scaling factors are allowed,
 such as dividing by the number of included terms to get the average.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>feature_id_col</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>feature_id_col</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>The name of a column in the features attribute to name features by.
 If None, the method defaults to naming features according to their index.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>robust</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>robust</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Whether to run limma-trend with robust approximation.</p>
               </div>
-            </td>
-            <td>
-                  <code>False</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>block</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>block</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Name of a column in samples attribute to using as a blocking variable.
 This must be used if running a model with both between- and within-subjects factors.
 The blocking variable should correspond to the column (subject)
 that gave rise to repeated values.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>array_weights</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>array_weights</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Whether to estimate sample quality weights.</p>
               </div>
-            </td>
-            <td>
-                  <code>False</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>extra_args</code>
-            </td>
-            <td>
-                  <code><span title="dict">dict</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>extra_args</code></b>
+                  (<code><span title="dict">dict</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Used in conjunction with array_weights to specify additional arguments.
 Valid key-value pairs include:</p>
@@ -2011,29 +1116,26 @@ Valid key-value pairs include:</p>
   If None, defaults to naming samples according to their index.</li>
 </ul>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A <code>SummarizedPy</code> object with a <code>results</code> attribute containing limma-trend DEA results with columns:</p>
 <ul>
@@ -2050,34 +1152,35 @@ Valid key-value pairs include:</p>
 <li>b : log-odds of differential expression</li>
 </ul>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If no design_formula or contrasts arguments are provided.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Full DEA pipeline on example dataset PXD000438.</p>
@@ -2123,28 +1226,28 @@ Samples 092.1-3 and 441.1-3 are ADC and 561.1-3 and 691.1-3 are SCC.</p>
 https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD000438</p>
 
 
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A <code>SummarizedPy</code> object with 12 samples and 3,709 features.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Load example dataset.</p>
@@ -2173,100 +1276,76 @@ https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD000438</p>
 If <code>data</code> contain features with missing values, these will simply be omitted, as PCA requires complete data.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>standardize</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>standardize</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Whether to standardize (i.e. feature-wise z-scoring) data before computing PCA.</p>
               </div>
-            </td>
-            <td>
-                  <code>True</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>n_comp</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>n_comp</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Number of principal components to calculate.
 Defaults to min(n_samples, n_features) as in sklearn.decimposition.PCA</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>fill_by</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>fill_by</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Valid column name in <code>samples</code> attribute to use for coloring.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>label</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>label</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Whether to label points according <code>sample</code> variable in <code>samples</code> attribute.</p>
               </div>
-            </td>
-            <td>
-                  <code>False</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="tuple">tuple</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>matplotlib figure and axes objects.</p>
 <ul>
@@ -2274,34 +1353,35 @@ Defaults to min(n_samples, n_features) as in sklearn.decimposition.PCA</p>
 <li>ax : <code>~matplotlib.axes.Axes</code></li>
 </ul>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If an invalid value is supplied to any of the arguments.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Generate PCA plot on standardized data.</p>
@@ -2330,116 +1410,99 @@ Note: if log2 transformation has not been applied using <code>transform_features
 it will be applied prior to fitting the mean-variance trend. Data will be returned on the original scale.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>top_n</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>top_n</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Number of top variable features to return.
 Mutually exclusive with <code>top_percentile</code>.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>top_percentile</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span> or <span title="float">float</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>top_percentile</code></b>
+                  (<code><span title="int">int</span> or <span title="float">float</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>The top Nth percentile (i.e. 100-top_percentile) of variable features to return.
 Mutually exclusive with <code>top_n</code>.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>plot</code>
-            </td>
-            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>plot</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Whether to plot the fitted mean-variance trend and highlight HVFs.</p>
               </div>
-            </td>
-            <td>
-                  <code>False</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A <code>SummarizedPy</code> object.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If no valid <code>top_n</code> or <code>top_percentile</code> arguments are supplied.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Select top 500 most variable features in example dataset PXD000438 and plot the fitted mean-variance trend.</p>
@@ -2479,116 +1542,99 @@ If no technical covariates are known, the method will run with the recommended d
 For more information, see: https://bioconductor.org/packages/3.19/bioc/vignettes/sva/inst/doc/sva.pdf</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>mod</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>mod</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A formula describing the fully parameterized model (incl. all known covariates).
 Must begin with a tilde (~) and add covariates with '+'.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>mod0</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>mod0</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;~1&#39;</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A formula describing the null model (incl. all known adjustment covariates).
 Must begin with a tilde (~) and add covariates with '+'. Defaults to '~1'.</p>
               </div>
-            </td>
-            <td>
-                  <code>&#39;~1&#39;</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>num_sv</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>num_sv</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>The number of significant surrogate variables to estimate.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A <code>SummarizedPy</code> object with estimate surrogate variables in the samples attribute.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If no mod formula is supplied.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Use SVA to estimate surrogate variables for inclusion in DEA.
@@ -2636,25 +1682,22 @@ Use example dataset PXD000438: filter missing values and log2 transform features
 log (base N), center (using mean or median subtraction), or z-score (standardize).</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>axis</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>axis</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>An axis to perform the transformation along:</p>
 <ul>
@@ -2662,19 +1705,13 @@ log (base N), center (using mean or median subtraction), or z-score (standardize
 <li>1 = columns (per-sample).</li>
 </ul>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>method</code>
-            </td>
-            <td>
-                  <code>(<span title="log">log</span>, <span title="center">center</span>, <span title="z">z</span> - <span title="score">score</span>, <span title="vsn">vsn</span>)</code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>method</code></b>
+                  (<code>(<span title="log">log</span>, <span title="center">center</span>, <span title="z">z</span> - <span title="score">score</span>, <span title="vsn">vsn</span>)</code>, default:
+                      <code>&#39;log&#39;</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Mathematical transformation to apply:</p>
 <ul>
@@ -2684,19 +1721,13 @@ log (base N), center (using mean or median subtraction), or z-score (standardize
 <li>vsn : Applies variance stabilizing normalization, as implemented Huber et al. (2004).</li>
 </ul>
               </div>
-            </td>
-            <td>
-                  <code>&#39;log&#39;</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>by</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span> or <span title="int">int</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>by</code></b>
+                  (<code><span title="str">str</span> or <span title="int">int</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Used in conjunction with <code>method='center'</code> or <code>method='log'</code>.</p>
 <ul>
@@ -2704,60 +1735,58 @@ log (base N), center (using mean or median subtraction), or z-score (standardize
 <li>With 'log' : int, An integer for the base of the logarithm (defaults to 2).</li>
 </ul>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><a class="autorefs autorefs-internal" title="SummarizedPy (depy.summarized_py.SummarizedPy)" href="#depy.summarized_py.SummarizedPy">SummarizedPy</a></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A transformed SummarizedPy object.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If an invalid value is supplied to either axis, method, or by.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Transform feature data in example dataset PXD000438.</p>
@@ -2788,88 +1817,70 @@ log (base N), center (using mean or median subtraction), or z-score (standardize
         <p>Generate volcano plots for limma-trend results, highlighting the top N up- and downregulated features.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>contrasts</code>
-            </td>
-            <td>
-                  <code><span title="list">list</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>contrasts</code></b>
+                  (<code><span title="list">list</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A list of strings referring to the name of contrasts to plot
 (i.e. column 'contrast_label' in results attribute). Defaults to all contrasts.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>top_n</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>top_n</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>3</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Number of top up- and down-regulated features to highlight,
 ranked by adjusted p-value (FDR).
 Note: top_n up- and top_n downregulated features will be displayed,
 rather top_n in total. Defaults to top 3.</p>
               </div>
-            </td>
-            <td>
-                  <code>3</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>de_colors</code>
-            </td>
-            <td>
-                  <code><span title="dict">dict</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>de_colors</code></b>
+                  (<code><span title="dict">dict</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>Colors to use for upregulated, downregulated, and non-significant features.
 Must supply 'Up', 'Down', and 'ns' as keys with associated colors (str).</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="dict">dict</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>Dictionaries of matplotlib figure and axes objects for each contrast.</p>
 <ul>
@@ -2877,34 +1888,35 @@ Must supply 'Up', 'Down', and 'ns' as keys with associated colors (str).</p>
 <li>ax : <code>~matplotlib.axes.Axes</code></li>
 </ul>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If an invalid value is supplied to either contrasts or de_colors.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Generate volcano plots after running limma_trend_dea method.</p>
@@ -2922,6 +1934,7 @@ Must supply 'Up', 'Down', and 'ns' as keys with associated colors (str).</p>
   </div>
 
     </div>
+
 
 </div>
 
@@ -2974,56 +1987,46 @@ Must supply 'Up', 'Down', and 'ns' as keys with associated colors (str).</p>
     <div class="doc doc-contents ">
 
 
+
         <p>Object for pre-selecting columns when constructing SummarizedPy from file.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>names</code>
-            </td>
-            <td>
-                  <code><span title="list">list</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>names</code></b>
+                  (<code><span title="list">list</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A list of strings matching column names.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>regex</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
+            </li>
+            <li>
+              <b><code>regex</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
               <div class="doc-md-description">
                 <p>A string that can be interpreted as a regular expression
 by re.search. Note that the search is case-insensitive.</p>
               </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <p>Define columns to import from file. Assume data are in columns labeled "LFQ_intensity_*".</p>
@@ -3032,7 +2035,6 @@ by re.search. Note that the search is case-insensitive.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">ColumnSelector</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;proteinID&quot;</span><span class="p">,</span> <span class="s2">&quot;geneSymbol&quot;</span><span class="p">,</span> <span class="s2">&quot;proteinDescription&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">SummarizedPy</span><span class="p">()</span><span class="o">.</span><span class="n">import_from_delim_file</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;my/path/proteingroups.txt&quot;</span><span class="p">,</span> <span class="n">delim</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">data_selector</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">feature_selector</span><span class="o">=</span><span class="n">features</span><span class="p">)</span>
 </code></pre></div>
-
 
 
 
@@ -3067,82 +2069,75 @@ by re.search. Note that the search is case-insensitive.</p>
 
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>df</code>
-            </td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>df</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
               <div class="doc-md-description">
                 <p>A Pandas <code>DataFrame</code> object on which to perform column selection.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code>    DataFrame</code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>A pandas <code>DataFrame</code> with selected columns.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
                   <code>    KeyError</code>
-            </td>
-            <td>
+              –
               <div class="doc-md-description">
                 <p>If no valid column names are supplied.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
 
@@ -3154,6 +2149,7 @@ by re.search. Note that the search is case-insensitive.</p>
 
     </div>
 
+
 </div>
 
 
@@ -3164,59 +2160,55 @@ by re.search. Note that the search is case-insensitive.</p>
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
+              
             </div>
-          
-          
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../usage/" class="btn btn-neutral float-left" title="Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../HISTORY/" class="btn btn-neutral float-right" title="Changelog">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
   </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/SebastianDHA/DEPy" class="fa fa-code-fork" style="color: #fcfcfc"> SebastianDHA/DEPy</a>
+        </span>
     
     
-    
-      
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.tabs", "content.code.annotate", "search.suggest"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <span><a href="../usage/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
-      
+      <span><a href="../HISTORY/" style="color: #fcfcfc">Next &raquo;</a></span>
     
-  </body>
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
 </html>
