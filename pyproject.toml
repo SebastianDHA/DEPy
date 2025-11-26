@@ -25,7 +25,8 @@ dependencies = [
     "adjustText",
     "pyjanitor",
     "openpyxl",
-    "statsmodels"
+    "statsmodels",
+    "scikit-learn"
 ]
 
 [tool.setuptools.packages.find]
