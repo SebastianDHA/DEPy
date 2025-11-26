@@ -15,7 +15,7 @@ maintainers = [
 ]
 
 license = "MIT"
-requires-python = ">= 3.9"
+requires-python = ">= 3.11"
 
 dependencies = [
     "numpy",
@@ -23,7 +23,8 @@ dependencies = [
     "matplotlib",
     "pyarrow",
     "adjustText",
-    "pyjanitor",
+    "pyjanitor==0.23.1",
+    "pandas_flavor<0.8",
     "openpyxl",
     "statsmodels",
     "scikit-learn"

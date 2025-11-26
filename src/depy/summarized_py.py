@@ -4,7 +4,7 @@ from typing import Optional, overload, Literal, Union
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import janitor
+from janitor import clean_names
 from adjustText import adjust_text
 from importlib import resources
 import subprocess
@@ -1208,14 +1208,14 @@ class SummarizedPy:
         return figs, axs
 
     # PCA plotter function
-    def plot_pca(self, standardize: bool=True, n_comp: int=None, fill_by: str=None, label: bool=False):
+    def plot_pca(self, standardize: Optional[bool]=True, n_comp: Optional[int]=None, fill_by: Optional[str]=None, label: Optional[bool]=False):
         """
         Generate PCA plot of data using the first two principal components. PCA is computed using scikit-learn's PCA estimator with defaults.
         If ``data`` contain features with missing values, these will simply be omitted, as PCA requires complete data.
 
         Parameters
         ----------
-        standardize : bool
+        standardize : bool, optional
             Whether to standardize (i.e. feature-wise z-scoring) data before computing PCA.
         n_comp : int, optional
             Number of principal components to calculate.

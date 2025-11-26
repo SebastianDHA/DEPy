@@ -5,7 +5,7 @@ channels:
   - defaults
 dependencies:
   # Core system/runtime
-  - python=3.9
+  - python>=3.11
   - pip
   - r-base=4.1.1
   - r-essentials
@@ -26,7 +26,8 @@ dependencies:
       - pandas
       - numpy
       - matplotlib
-      - pyjanitor
+      - pyjanitor==0.23.1
+      - pandas_flavor<0.8
       - openpyxl
       - adjustText
       - jupyter
