@@ -608,6 +608,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pca-plots" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCA plots
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -858,6 +867,15 @@
   <a href="#volcano-plots" class="md-nav__link">
     <span class="md-ellipsis">
       Volcano plots
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pca-plots" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCA plots
     </span>
   </a>
   
@@ -1264,6 +1282,24 @@ and hexcodes or valid color names as values.</p>
 <span class="c1"># Change colors</span>
 <span class="n">de_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Up&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;Down&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;ns&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">}</span>
 <span class="n">sp</span><span class="o">.</span><span class="n">volcano_plot</span><span class="p">(</span><span class="n">de_colors</span><span class="o">=</span><span class="n">de_colors</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="pca-plots">PCA plots<a class="headerlink" href="#pca-plots" title="Permanent link">&para;</a></h2>
+<p>It is common to visualize your data with PCA to get an idea of what the variance structure is like.
+This is particularly useful in combination with labeling and coloring according to some condition or variable to reveal clustering or outlier samples.
+DEPy has a simple plotting function for this, which calls scikit-learn's PCA estimator under the hood with all defaults (standard SVD).
+It is important to remember that PCA is highly sensitive to feature scale and range, such that if some features have greater range,
+the model will return components that mainly reflect the differences in feature scales. This is commonly remedied by standardizing the features (i.e. z-scoring) first.
+This can be done by calling the <code>plot_pca</code> method with <code>standardize=True</code>.</p>
+<p>The method both displays the PCA plot and returns <code>matplotlib.Figure</code> or <code>matplotlib.Axes</code> objects as a tuple.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Plot PCA with example dataset using method defaults</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">plot_pca</span><span class="p">()</span>
+</code></pre></div>
+<p>You can change the number of principal components to estimate using the <code>n_comp</code> argument.
+However, the method only plots samples along the first two components.</p>
+<p>To color samples by some condition or variable, simply provide a valid string to the <code>fill_by</code>argument indicating a column in the <code>samples</code> attribute.
+To label individual sample points, set <code>label=True</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Plot PCA and color by tumor condition and label individual samples</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">plot_pca</span><span class="p">(</span><span class="n">fill_by</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 <p>There you have it!</p>
 
