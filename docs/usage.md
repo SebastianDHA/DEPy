@@ -457,4 +457,30 @@ de_colors = {"Up": "red", "Down": "blue", "ns": "white"}
 sp.volcano_plot(de_colors=de_colors)
 ```
 
+## PCA plots
+It is common to visualize your data with PCA to get an idea of what the variance structure is like.
+This is particularly useful in combination with labeling and coloring according to some condition or variable to reveal clustering or outlier samples.
+DEPy has a simple plotting function for this, which calls scikit-learn's PCA estimator under the hood with all defaults (standard SVD).
+It is important to remember that PCA is highly sensitive to feature scale and range, such that if some features have greater range,
+the model will return components that mainly reflect the differences in feature scales. This is commonly remedied by standardizing the features (i.e. z-scoring) first.
+This can be done by calling the ``plot_pca`` method with ``standardize=True``.
+
+The method both displays the PCA plot and returns ```matplotlib.Figure``` or ```matplotlib.Axes``` objects as a tuple.
+
+```Py
+# Plot PCA with example dataset using method defaults
+fig, ax = sp.plot_pca()
+```
+
+You can change the number of principal components to estimate using the ``n_comp`` argument.
+However, the method only plots samples along the first two components.
+
+To color samples by some condition or variable, simply provide a valid string to the ``fill_by``argument indicating a column in the ``samples`` attribute.
+To label individual sample points, set ``label=True``.
+
+```Py
+# Plot PCA and color by tumor condition and label individual samples
+fig, ax = sp.plot_pca(fill_by="condition", label=True)
+```
+
 There you have it!

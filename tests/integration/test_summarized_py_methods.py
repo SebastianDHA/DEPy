@@ -123,3 +123,13 @@ def test_volcano_plot(load_data_sp):
 
     assert isinstance(figs, dict) and isinstance(axs, dict)
     assert isinstance(figs["Test"], plt.Figure) and isinstance(axs["Test"], plt.Axes)
+
+@pytest.mark.integration
+def test_plot_pca(load_data_sp, mocker):
+    import matplotlib.pyplot as plt
+    obj = load_data_sp
+    mock_show = mocker.patch("matplotlib.pyplot.show")
+    fig, ax = obj.plot_pca(standardize=True)
+    mock_show.assert_called_once()
+
+    assert isinstance(fig, plt.Figure) and isinstance(ax, plt.Axes)
