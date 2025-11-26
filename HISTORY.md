@@ -1,8 +1,10 @@
 # History
 
-## 0.3.0 (2025-11-26)
+## 0.3.1 (2025-11-26)
 
 * Added plot_pca method to visualize data with PCA.
+* Updated package Python dependency to 3.11+
+* Fixed a bug due to recent dependency breaks (pyjanitor, pandas_flavor)
 
 ## 0.2.0 (2025-10-24)
 
