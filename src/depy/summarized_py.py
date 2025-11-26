@@ -11,6 +11,7 @@ import subprocess
 import tempfile
 import pyarrow.feather as feather
 from statsmodels.nonparametric.smoothers_lowess import lowess
+from sklearn.decomposition import PCA
 import re
 import pathlib
 import os
@@ -1134,8 +1135,9 @@ class SummarizedPy:
         -------
         dict
             Dictionaries of matplotlib figure and axes objects for each contrast.
-            - fig : `.Figure`
-            - ax : `~matplotlib.axes.Axes`
+
+            - fig : ``.Figure``
+            - ax : ``~matplotlib.axes.Axes``
 
         Raises
         ------
@@ -1204,3 +1206,100 @@ class SummarizedPy:
             axs[contr] = ax
 
         return figs, axs
+
+    # PCA plotter function
+    def plot_pca(self, standardize: bool=True, n_comp: int=None, fill_by: str=None, label: bool=False):
+        """
+        Generate PCA plot of data using the first two principal components. PCA is computed using scikit-learn's PCA estimator with defaults.
+        If ``data`` contain features with missing values, these will simply be omitted, as PCA requires complete data.
+
+        Parameters
+        ----------
+        standardize : bool
+            Whether to standardize (i.e. feature-wise z-scoring) data before computing PCA.
+        n_comp : int, optional
+            Number of principal components to calculate.
+            Defaults to min(n_samples, n_features) as in sklearn.decimposition.PCA
+        fill_by : str, optional
+            Valid column name in ``samples`` attribute to use for coloring.
+        label : bool, optional
+            Whether to label points according ``sample`` variable in ``samples`` attribute.
+
+        Returns
+        -------
+        tuple
+            matplotlib figure and axes objects.
+
+            - fig : ``.Figure``
+            - ax : ``~matplotlib.axes.Axes``
+
+        Raises
+        ------
+        ValueError
+            If an invalid value is supplied to any of the arguments.
+
+        Examples
+        --------
+        Generate PCA plot on standardized data.
+
+        >>> sp.plot_pca(standardize=True)
+        """
+        # --- Validation ---
+        if not isinstance(standardize, bool):
+            raise ValueError(f"Error: 'standardize' must be a boolean (True or False), got {type(standardize).__name__}")
+        if not isinstance(label, bool):
+            raise ValueError(f"Error: 'label' must be a boolean (True or False), got {type(label).__name__}")
+        if n_comp is not None:
+            if not isinstance(n_comp, int):
+                raise ValueError(f"Error: 'n_comp' must be an integer, got {type(n_comp).__name__}")
+        if fill_by is not None:
+            if not isinstance(fill_by, str):
+                raise ValueError(f"Error: 'fill_by' must be a string, got {type(fill_by).__name__}")
+            if fill_by not in list(self.samples.columns):
+                raise ValueError(f"Error: 'fill_by' must be a valid column name in samples attribute, got {fill_by}")
+
+        # --- Data preparation ---
+        if standardize:
+            data = self.transform_features(method="z-score", axis=0).data.T
+        else:
+            data = self.data.T
+
+        missing_mask = np.isnan(data)
+
+        if np.any(missing_mask):
+            print("Warning: Detected NaN values in data, omitting features with missing values...")
+            missing_feature = missing_mask.any(axis=0)
+            data = data[:, ~missing_feature]
+
+        # --- PCA ---
+        pca = PCA(n_components=n_comp)
+        data_transformed = pca.fit_transform(data)
+
+        comps = [f"PC {i + 1} ({var:.1f}%)" for i, var in enumerate(pca.explained_variance_ratio_ * 100)]
+
+        # --- Plotting ---
+        fig, ax = plt.subplots()
+
+        if fill_by:
+            for element in set(self.samples[fill_by]):
+                sample_mask = self.samples[fill_by] == element
+                x, y = data_transformed[sample_mask, 0], data_transformed[sample_mask, 1]
+                ax.scatter(x, y, label=element, edgecolor="black", alpha=0.8)
+                ax.legend(frameon=False, fontsize="small")
+
+        else:
+            x, y = data_transformed[:, 0], data_transformed[:, 1]
+            ax.scatter(x, y, edgecolor="black", alpha=0.8)
+
+        if label:
+            x, y = data_transformed[:, 0], data_transformed[:, 1]
+            feature_text = [plt.text(x=x, y=y, s=s, fontsize=9) for x, y, s in zip(x, y, self.samples["sample"])]
+            adjust_text(feature_text, arrowprops=dict(arrowstyle="-", color='k', lw=0.5), min_arrow_len=15,
+                        force_pull=0, force_explode=1, force_text=1, force_static=1, expand=(2, 2))
+
+        ax.set_xlabel(comps[0])
+        ax.set_ylabel(comps[1])
+
+        plt.show()
+
+        return fig, ax

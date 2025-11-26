@@ -34,3 +34,4 @@ dependencies:
       - pytest-mock
       - summarizedpy
       - statsmodels
+      - scikit-learn
