@@ -95,6 +95,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pca-plots">PCA plots</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#saving-and-loading-summarizedpy-objects">Saving and loading SummarizedPy objects</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -530,6 +532,16 @@ However, the method only plots samples along the first two components.</p>
 To label individual sample points, set <code>label=True</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Plot PCA and color by tumor condition and label individual samples</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">plot_pca</span><span class="p">(</span><span class="n">fill_by</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="saving-and-loading-summarizedpy-objects">Saving and loading SummarizedPy objects<a class="headerlink" href="#saving-and-loading-summarizedpy-objects" title="Permanent link">&para;</a></h2>
+<p>To allow users to save and load <code>SummarizedPy</code> objects complete with history, DEPy leverages Python's pickle library.
+Fortunately, all data structures in a <code>SummarizedPy</code> are readily serializable and, thus, lend themselves well to easy read/write.
+Simply call the <code>save_sp</code> and <code>load_sp</code> methods! The former automatically appends the correct ".pkl" suffix, so there is no need to remember it.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Save to disk</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">save_sp</span><span class="p">(</span><span class="s2">&quot;my_sp&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load from disk</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">SummarizedPy</span><span class="p">()</span><span class="o">.</span><span class="n">load_sp</span><span class="p">(</span><span class="s2">&quot;my_sp.pkl&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>There you have it!</p>
               
