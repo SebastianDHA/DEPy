@@ -94,6 +94,20 @@ def test_import_from_delim_file(tmp_path, test_df):
     assert "proteinID" in obj.features.columns
 
 @pytest.mark.integration
+def test_save_and_load_sp(tmp_path, toy_data_sp):
+    path = tmp_path / "test_save_sp.pkl"
+    path = str(path)
+    toy_data_sp = toy_data_sp
+
+    toy_data_sp.save_sp(path=path)
+    loaded_sp = SummarizedPy.load_sp(path=path)
+
+    assert isinstance(loaded_sp, SummarizedPy)
+    assert np.array_equal(loaded_sp.data, toy_data_sp.data)
+    assert loaded_sp.features.equals(loaded_sp.features)
+    assert loaded_sp.samples.equals(loaded_sp.samples)
+
+@pytest.mark.integration
 def test_surrogate_variable_analysis(load_data_sp):
     obj = load_data_sp
     obj.samples["condition"] = ["ADC"] * 6 + ["SCC"] * 6

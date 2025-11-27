@@ -4,7 +4,7 @@ repo_url: https://github.com/SebastianDHA/DEPy
 repo_name: SebastianDHA/DEPy
 
 theme:
-  name: material
+  name: readthedocs
   features:
     - navigation.expand
     - navigation.tabs
