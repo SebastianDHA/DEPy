@@ -15,6 +15,7 @@ from sklearn.decomposition import PCA
 import re
 import pathlib
 import os
+import pickle
 
 class SummarizedPy:
     """
@@ -630,72 +631,72 @@ class SummarizedPy:
     def _run_r_module(self, module_name: str = None, extra_args: dict = None, data: bool = True, samples: bool = False,
                       features: bool = False):
 
-        with resources.files("depy").joinpath(f"R/{module_name}.R") as rscript:
-            with tempfile.TemporaryDirectory(prefix=module_name) as tmp_dir:
-                tmpd = pathlib.Path(tmp_dir)
-                out_path = tmpd / "out.feather"
-                logs_dir = tmpd / "data" / "logs"
-                logs_dir.mkdir(parents=True, exist_ok=True)
-                log_path = logs_dir / f"{module_name}.log"
+        rscript = resources.files("depy").joinpath(f"R/{module_name}.R")
+        with tempfile.TemporaryDirectory(prefix=module_name) as tmp_dir:
+            tmpd = pathlib.Path(tmp_dir)
+            out_path = tmpd / "out.feather"
+            logs_dir = tmpd / "data" / "logs"
+            logs_dir.mkdir(parents=True, exist_ok=True)
+            log_path = logs_dir / f"{module_name}.log"
 
-                # Define env for R to run in and where to look for libraries (avoids global config leak)
-                env = os.environ.copy()
-                env_root = env["CONDA_PREFIX"]
-                r_lib = f"{env_root}/lib/R/library"
-                env.update({
-                    "R_HOME": f"{env_root}/lib/R",
-                    "R_LIBS": r_lib,
-                    "R_LIBS_USER": r_lib,
-                    "R_LIBS_SITE": r_lib,
-                    "DYLD_LIBRARY_PATH": f"{env_root}/lib:" + env.get("DYLD_LIBRARY_PATH", ""),
-                })
+            # Define env for R to run in and where to look for libraries (avoids global config leak)
+            env = os.environ.copy()
+            env_root = env["CONDA_PREFIX"]
+            r_lib = f"{env_root}/lib/R/library"
+            env.update({
+                "R_HOME": f"{env_root}/lib/R",
+                "R_LIBS": r_lib,
+                "R_LIBS_USER": r_lib,
+                "R_LIBS_SITE": r_lib,
+                "DYLD_LIBRARY_PATH": f"{env_root}/lib:" + env.get("DYLD_LIBRARY_PATH", ""),
+            })
 
-                # R module call and default arguments
-                cmd = ["Rscript", str(rscript),
-                       "--out", str(out_path)]
+            # R module call and default arguments
+            cmd = ["Rscript", str(rscript),
+                   "--out", str(out_path)]
 
-                # Extra user-supplied args
-                if extra_args is not None:
-                    for k, v in extra_args.items():
-                        if v is None:
-                            continue
-                        cmd.extend([f"--{k}", str(v)])
+            # Extra user-supplied args
+            if extra_args is not None:
+                for k, v in extra_args.items():
+                    if v is None:
+                        continue
+                    cmd.extend([f"--{k}", str(v)])
 
-                # Write SP attributes to temp dir
-                # Data
-                if data:
-                    expr_path = tmpd / "expr.feather"
-                    feather.write_feather(pd.DataFrame(self.data), dest=expr_path)
-                    cmd.extend(["--expr", str(expr_path)])
+            # Write SP attributes to temp dir
+            # Data
+            if data:
+                expr_path = tmpd / "expr.feather"
+                feather.write_feather(pd.DataFrame(self.data), dest=str(expr_path))
+                cmd.extend(["--expr", str(expr_path)])
 
-                # Samples
-                if samples:
-                    samples_path = tmpd / "samples.feather"
-                    feather.write_feather(self.samples, dest=samples_path)
-                    cmd.extend(["--samples", str(samples_path)])
+            # Samples
+            if samples:
+                samples_path = tmpd / "samples.feather"
+                feather.write_feather(self.samples, dest=str(samples_path))
+                cmd.extend(["--samples", str(samples_path)])
 
-                # Features
-                if features:
-                    features_path = tmpd / "features.feather"
-                    feather.write_feather(self.features, dest=features_path)
-                    cmd.extend(["--features", str(features_path)])
+            # Features
+            if features:
+                features_path = tmpd / "features.feather"
+                feather.write_feather(self.features, dest=str(features_path))
+                cmd.extend(["--features", str(features_path)])
 
-                # Run R module subprocess
-                with open(log_path, "w") as logf:
-                    print(f"Running {module_name} R module...")
-                    proc = subprocess.run(cmd, stdout=logf, stderr=subprocess.STDOUT, check=False, env=env)
-                    print("Done")
+            # Run R module subprocess
+            with open(log_path, "w") as logf:
+                print(f"Running {module_name} R module...")
+                proc = subprocess.run(cmd, stdout=logf, stderr=subprocess.STDOUT, check=False, env=env)
+                print("Done")
 
-                # Check subprocess return code
-                if proc.returncode != 0:
-                    with open(log_path, "r") as f:
-                        logtxt = f.read()
-                    raise RuntimeError(f"R module failed (code={proc.returncode}). Log:\n{logtxt}")
+            # Check subprocess return code
+            if proc.returncode != 0:
+                with open(log_path, "r") as f:
+                    logtxt = f.read()
+                raise RuntimeError(f"R module failed (code={proc.returncode}). Log:\n{logtxt}")
 
-                if not out_path.exists():
-                    raise FileNotFoundError(f"Expected output not found: {out_path}")
+            if not out_path.exists():
+                raise FileNotFoundError(f"Expected output not found: {out_path}")
 
-                return feather.read_feather(out_path)
+            return feather.read_feather(out_path)
 
     @classmethod
     def load_example_data(cls):
@@ -1303,3 +1304,55 @@ class SummarizedPy:
         plt.show()
 
         return fig, ax
+
+    # Save/Load SP objects using pickle
+    def save_sp(self, path: str=None):
+        """
+        Save ``SummarizedPy`` object to disk using pickle for easy loading in the future.
+        Method automatically appends '.pkl' to file.
+
+        Parameters
+        ----------
+        path : str
+            Path to save pickle file.
+
+        Examples
+        --------
+        Save SP object to disk.
+
+        >>> sp.save_sp(path="my_sp")
+        """
+        path = pathlib.Path(path)
+        if path.suffix != ".pkl":
+            path = path.with_suffix(".pkl")
+
+        with path.open("wb") as f:
+            print(f"Saving SummarizedPy to {str(path)}...")
+            pickle.dump(self, f)
+
+    @classmethod
+    def load_sp(cls, path: str=None):
+        """
+        Load a previously saved ``SummarizedPy`` object, stored as a pickle file on disk.
+
+        Parameters
+        ----------
+        path : str
+            Path to stored pickle file.
+
+        Returns
+        -------
+        SummarizedPy
+            A ``SummarizedPy`` object.
+
+        Examples
+        --------
+        Load a saved SP object from pickle file.
+
+        >>> import depy as dp
+        >>> sp = dp.SummarizedPy().load_sp("my_sp.pkl")
+        """
+        path = pathlib.Path(path)
+        with path.open("rb") as f:
+            print(f"Loading SummarizedPy from {str(path)}...")
+            return pickle.load(f)
