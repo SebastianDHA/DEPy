@@ -483,4 +483,17 @@ To label individual sample points, set ``label=True``.
 fig, ax = sp.plot_pca(fill_by="condition", label=True)
 ```
 
+## Saving and loading SummarizedPy objects
+To allow users to save and load ``SummarizedPy`` objects complete with history, DEPy leverages Python's pickle library.
+Fortunately, all data structures in a ``SummarizedPy`` are readily serializable and, thus, lend themselves well to easy read/write.
+Simply call the ``save_sp`` and ``load_sp`` methods! The former automatically appends the correct ".pkl" suffix, so there is no need to remember it.
+
+```Py
+# Save to disk
+sp.save_sp("my_sp")
+
+# Load from disk
+sp = dp.SummarizedPy().load_sp("my_sp.pkl")
+```
+
 There you have it!
