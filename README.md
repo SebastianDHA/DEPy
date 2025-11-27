@@ -21,6 +21,9 @@ All you need is a matrix of features and their intensity values.
 * Use the flexibility and power of limma-trend to improve your DEA results and accommodate mixed effects
 * Limma arrayWeights to adjust variable sample quality (often an issue in human and animal datasets)
 * Visualize your DEA results with elegant volcano plots
+* Highly-variable feature selection
+* PCA plots
+* Saving & loading SummarizedPy objects to & from disk
 
 ## Installation
 ### conda

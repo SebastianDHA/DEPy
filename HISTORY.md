@@ -1,5 +1,9 @@
 # History
 
+## 0.4.0 (2025-11-27)
+
+* Added new features to allow saving and loading SP objects using pickle.
+
 ## 0.3.1 (2025-11-26)
 
 * Added plot_pca method to visualize data with PCA.
