@@ -16,6 +16,7 @@ import re
 import pathlib
 import os
 import pickle
+import inspect
 
 class SummarizedPy:
     """
@@ -314,6 +315,7 @@ class SummarizedPy:
             If ``axis`` is invalid or no additional filter argument (i.e. ``expr`` or ``mask``) is supplied.
         """
 
+        # --- Determine metadata axis ---
         if axis == "features":
             meta = self.features
             axis_num = 0
@@ -323,26 +325,47 @@ class SummarizedPy:
         else:
             raise ValueError("Error: axis must be 'features' or 'samples'")
 
+        # --- expr-based filtering ---
         if expr is not None:
-            keep_index = meta.query(expr).index
+            # Capture caller frame (user scope)
+            frame = inspect.currentframe().f_back.f_back
+            local_dict = frame.f_locals
+            global_dict = frame.f_globals
+
+            # Boolean mask returned by .query()
+            mask_bool = meta.index.isin(
+                meta.query(expr, local_dict=local_dict, global_dict=global_dict).index
+            )
+
             tmp_str = f" with expr='{expr}'"
+
+        # --- mask-based filtering ---
         elif mask is not None:
-            keep_index = np.flatnonzero(mask)
+            mask_bool = np.asarray(mask).astype(bool)
+            if mask_bool.shape[0] != meta.shape[0]:
+                raise ValueError(
+                    f"Mask length {mask_bool.shape[0]} does not match metadata length {meta.shape[0]}"
+                )
             tmp_str = None
+
         else:
             raise ValueError("Error: must supply either expr or mask")
 
-        new_meta = meta.loc[keep_index]
-        new_meta = new_meta.reset_index(drop=True)
-        new_data = self._data.take(keep_index, axis=axis_num)
+        # --- Apply mask to both metadata and data ---
+        keep_positions = np.flatnonzero(mask_bool)
 
+        new_meta = meta.loc[mask_bool].reset_index(drop=True)
+        new_data = self._data.take(keep_positions, axis=axis_num)
+
+        # --- Construct new SummarizedPy object ---
         if axis == "features":
             new_obj = self.__class__(data=new_data, features=new_meta, samples=self.samples)
         else:
             new_obj = self.__class__(data=new_data, features=self.features, samples=new_meta)
 
         new_obj._history = self.history + [
-            f"Filtered {axis}{tmp_str if tmp_str is not None else ''}: {len(keep_index)} kept"]
+            f"Filtered {axis}{tmp_str if tmp_str else ''}: {mask_bool.sum()} kept"
+        ]
         return new_obj
 
     def filter_samples(self, expr: Optional[str] = None, mask: Optional[bool] = None):
@@ -1327,7 +1350,7 @@ class SummarizedPy:
             path = path.with_suffix(".pkl")
 
         with path.open("wb") as f:
-            print(f"Saving SummarizedPy to {str(path)}...")
+            print(f"Saving SummarizedPy to '{str(path)}'...")
             pickle.dump(self, f)
 
     @classmethod
@@ -1354,5 +1377,5 @@ class SummarizedPy:
         """
         path = pathlib.Path(path)
         with path.open("rb") as f:
-            print(f"Loading SummarizedPy from {str(path)}...")
+            print(f"Loading SummarizedPy from '{str(path)}'...")
             return pickle.load(f)

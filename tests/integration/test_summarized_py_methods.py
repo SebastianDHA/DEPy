@@ -68,8 +68,10 @@ def test_multiple_filters(load_data_sp):
     obj.features["rev"] = rev_hits
     obj_mask = obj.filter_features(mask=~rev_hits)
     obj_expr = obj.filter_features(expr="~rev")
+    obj_expr_local = obj.filter_features(expr="~@rev_hits")
     assert obj_mask.features.shape == obj_expr.features.shape
     assert obj_mask.features.shape[0] < obj.features.shape[0]
+    assert obj_expr.features.shape[0] == obj_expr_local.features.shape[0]
 
 @pytest.mark.integration
 def test_select_variable_features(load_data_sp, mocker):
