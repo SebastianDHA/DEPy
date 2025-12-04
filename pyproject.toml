@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "summarizedpy"
-version = "0.4.0"
+version = "0.4.1"
 description = "A differential expression analysis package for proteomics data, which leverages transcriptomics tools."
 readme = "README.md"
 authors = [
