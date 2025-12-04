@@ -1,5 +1,9 @@
 # History
 
+## 0.4.1 (2025-12-04)
+
+* Patched a minor bug in filter_features and filter_samples.
+
 ## 0.4.0 (2025-11-27)
 
 * Added new features to allow saving and loading SP objects using pickle.
