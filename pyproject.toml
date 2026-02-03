@@ -23,8 +23,6 @@ dependencies = [
     "matplotlib",
     "pyarrow",
     "adjustText",
-    "pyjanitor==0.23.1",
-    "pandas_flavor<0.8",
     "openpyxl",
     "statsmodels",
     "scikit-learn"
