@@ -74,6 +74,8 @@ design <- model.matrix(design_formula, data=samples)
 # If full match, retain, else remove pattern (avoids accidental blank column names)
 term_str <- paste0(attr(terms(design_formula), "term.labels"), collapse = "|")
 mask <- str_extract(colnames(design), term_str) == colnames(design)
+mask_ <- tolower(str_remove(colnames(design), term_str)) %in% c("true", "false")
+mask <- mask | mask_
 new_names <- map2(.x=colnames(design), .y=mask, .f = function(.x, .y){
 
   if (.y) {.x}
