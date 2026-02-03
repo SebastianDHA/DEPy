@@ -1,5 +1,9 @@
 # History
 
+## 0.4.2 (2026-02-03)
+
+* Patched a minor bug in limma_trend_dea.
+
 ## 0.4.1 (2025-12-04)
 
 * Patched a minor bug in filter_features and filter_samples.

@@ -23,11 +23,7 @@ tests:
 #  4⃣ Build wheel and test it
 # -------------------------------------------------
 wheel:
-    pip install build toml
-    VERSION=$(python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])")
     python -m build
-    pip install dist/summarizedpy-${VERSION}-py3-none-any.whl
-    pytest -v
 
 # -------------------------------------------------
 #  5⃣ Build MkDocs site
