@@ -26,8 +26,6 @@ dependencies:
       - pandas
       - numpy
       - matplotlib
-      - pyjanitor==0.23.1
-      - pandas_flavor<0.8
       - openpyxl
       - adjustText
       - jupyter

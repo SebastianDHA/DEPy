@@ -1,10 +1,9 @@
 from .column_selector import ColumnSelector
-from .utils import _annotate_features_reg
+from .utils import _annotate_features_reg, clean_names
 from typing import Optional, overload, Literal, Union
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from janitor import clean_names
 from adjustText import adjust_text
 from importlib import resources
 import subprocess
@@ -204,7 +203,7 @@ class SummarizedPy:
         The original data row and columns indices are stored in features and samples 'orig_index' variables, resp., for bookkeeping.
         The read path and delimiter used will be appended to the history attribute.
         Values in data can be replaced with NaN to indicate missingness (e.g. intensity values of 0).
-        Column names can be automatically cleaned with the pyjanitor clean_names function.
+        Column names can be automatically cleaned.
 
         Parameters
         ----------
@@ -257,7 +256,7 @@ class SummarizedPy:
         df = pd.read_csv(path, delimiter=delim, low_memory=False)
 
         if clean_column_names:
-            df = df.clean_names(strip_underscores="both")
+            df = clean_names(df)
 
         samples = pd.DataFrame()
 
@@ -1127,7 +1126,7 @@ class SummarizedPy:
                                          extra_args=extra_args,
                                          samples=True,
                                          features=True)
-        dea_results = dea_results.clean_names()
+        dea_results = clean_names(dea_results)
 
         new_obj = self.__class__(data=self.data, features=self.features, samples=self.samples)
         new_obj._results = dea_results
