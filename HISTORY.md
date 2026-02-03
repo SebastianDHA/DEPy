@@ -1,5 +1,9 @@
 # History
 
+## 0.5.0 (2026-02-03)
+
+* Removed dependency on pyjanitor and implemented custom column name cleaning.
+
 ## 0.4.2 (2026-02-03)
 
 * Patched a minor bug in limma_trend_dea.
