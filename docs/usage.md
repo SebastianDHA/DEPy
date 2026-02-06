@@ -418,9 +418,9 @@ DEPy uses limma's (and R's) standard conventions for linear modeling
 This means that you just invoke the names of the covariates as they appear in the ```samples``` attribute when writing the ``design_formula`` argument.
 When defining contrasts, simply follow these rules:
 
-- **Categorical covariates**: reference the levels of the covariates as they appear in ```samples```. E.g. ``treated-untreated``
-- **Continuous covariates**: reference the covariate name just like in the design formula. E.g. ```age_in_years```
-- **Binary covariates**: combine the name of the covariate with an R-formatted boolean. E.g. ```missingTRUE``` (note that ``TRUE`` and ``FALSE`` are note valid names inside an R contrast).
+* **Categorical covariates**: reference the levels of the covariates as they appear in ```samples```. E.g. ``treated-untreated``
+* **Continuous covariates**: reference the covariate name just like in the design formula. E.g. ```age_in_years```
+* **Binary covariates**: combine the name of the covariate with an R-formatted boolean. E.g. ```missingTRUE``` (note that ``TRUE`` and ``FALSE`` are note valid names inside an R contrast).
 
 ````Py
 # Specify design formula (including 'condition' and surrogate variables)
