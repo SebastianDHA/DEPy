@@ -89,6 +89,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#a-brief-note-on-design-formulae">A brief note on design formulae</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-reference-covariates-and-write-contrasts">How to reference covariates and write contrasts</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#volcano-plots">Volcano plots</a>
@@ -477,6 +479,14 @@ To this end, DEPy will:
 - inject a '~' if you forget one
 - add a '0+' to the start of the <code>design_formula</code></p>
 <p>In general, the intercept term is often of little interest (it represents the grand average) and will not affect fold changes.</p>
+<h3 id="how-to-reference-covariates-and-write-contrasts">How to reference covariates and write contrasts<a class="headerlink" href="#how-to-reference-covariates-and-write-contrasts" title="Permanent link">&para;</a></h3>
+<p>DEPy uses limma's (and R's) standard conventions for linear modeling
+(<a href="https://doi.org/10.12688/f1000research.27893.1">see Gordon Smyth's useful guide on writing design matrices</a>).
+This means that you just invoke the names of the covariates as they appear in the <code>samples</code> attribute when writing the <code>design_formula</code> argument.
+When defining contrasts, simply follow these rules:
+- <strong>Categorical covariates</strong>: reference the levels of the covariates as they appear in <code>samples</code>. E.g. <code>treated-untreated</code>
+- <strong>Continuous covariates</strong>: reference the covariate name just like in the design formula. E.g. <code>age_in_years</code>
+- <strong>Binary covariates</strong>: combine the name of the covariate with an R-formatted boolean. E.g. <code>missingTRUE</code> (note that <code>TRUE</code> and <code>FALSE</code> are note valid names inside an R contrast).</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Specify design formula (including &#39;condition&#39; and surrogate variables)</span>
 <span class="n">des</span> <span class="o">=</span> <span class="s2">&quot;~condition+sv_1+sv_2+sv_3&quot;</span>
 
