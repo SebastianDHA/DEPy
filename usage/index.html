@@ -483,10 +483,12 @@ To this end, DEPy will:
 <p>DEPy uses limma's (and R's) standard conventions for linear modeling
 (<a href="https://doi.org/10.12688/f1000research.27893.1">see Gordon Smyth's useful guide on writing design matrices</a>).
 This means that you just invoke the names of the covariates as they appear in the <code>samples</code> attribute when writing the <code>design_formula</code> argument.
-When defining contrasts, simply follow these rules:
-- <strong>Categorical covariates</strong>: reference the levels of the covariates as they appear in <code>samples</code>. E.g. <code>treated-untreated</code>
-- <strong>Continuous covariates</strong>: reference the covariate name just like in the design formula. E.g. <code>age_in_years</code>
-- <strong>Binary covariates</strong>: combine the name of the covariate with an R-formatted boolean. E.g. <code>missingTRUE</code> (note that <code>TRUE</code> and <code>FALSE</code> are note valid names inside an R contrast).</p>
+When defining contrasts, simply follow these rules:</p>
+<ul>
+<li><strong>Categorical covariates</strong>: reference the levels of the covariates as they appear in <code>samples</code>. E.g. <code>treated-untreated</code></li>
+<li><strong>Continuous covariates</strong>: reference the covariate name just like in the design formula. E.g. <code>age_in_years</code></li>
+<li><strong>Binary covariates</strong>: combine the name of the covariate with an R-formatted boolean. E.g. <code>missingTRUE</code> (note that <code>TRUE</code> and <code>FALSE</code> are note valid names inside an R contrast).</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Specify design formula (including &#39;condition&#39; and surrogate variables)</span>
 <span class="n">des</span> <span class="o">=</span> <span class="s2">&quot;~condition+sv_1+sv_2+sv_3&quot;</span>
 
