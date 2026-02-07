@@ -29,7 +29,8 @@ User-friendly software like Perseus come with easy filtering, transformation, im
 *Alas, none of this is available in Python...*
 
 ## Why DEPy
-I spent my PhD leveraging R-based transcriptomics tools to power my proteomics and metabolomics analyses and tackle common issues associated with real-world, human and animal datasets.
+I spent my PhD leveraging R-based transcriptomics tools to power my proteomics and metabolomics analyses and tackle common issues associated with real-world, human and animal datasets
+([here's the paper wherein I explain why this is such a good idea](https://doi.org/10.1021/acs.jproteome.5c00719)).
 
 As I was migrating my workflows to Python (mainly for ML), I wanted to bring all of that Bioconductor goodness with me.
 So, I decided to package it - bringing the best of two worlds.

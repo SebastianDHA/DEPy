@@ -52,6 +52,15 @@ See the full [tutorial](docs/usage.md) for more.
 - [GitHub pages](https://sebastiandha.github.io/DEPy/)
 - [ReadTheDocs](https://depy.readthedocs.io/en/latest/)
 
+## Citation
+DEPy and its theoretical foundations are described in the following paper:
+```
+Dohm-Hansen, S., et al. (2026).
+Expanding the Proteomics and Metabolomics Toolkit with Methods for Differential Expression Analysis from Transcriptomics.
+Journal of Proteome Research Article ASAP.
+https://doi.org/10.1021/acs.jproteome.5c00719
+```
+
 ## Credits
 This package leverages amazing packages from the R and Bioconductor community, including [limma](https://bioconductor.org/packages/3.20/bioc/html/limma.html), [vsn](https://bioconductor.org/packages/release/bioc/html/vsn.html), [sva](https://bioconductor.org/packages/release/bioc/html/sva.html), [ImputeLCMD](https://cran.r-project.org/package=imputeLCMD), and [Tidyverse](https://www.tidyverse.org/).
 This package was created with [Cookiecutter](https://github.com/audreyfeldroy/cookiecutter) and the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.
